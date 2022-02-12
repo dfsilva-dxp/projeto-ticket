@@ -1,7 +1,7 @@
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 import { SignInForm } from "../components/Login/SignInForm";
-import { SignUnForm } from "../components/Login/SignUnForm";
+import { SignUpForm } from "../components/Login/SignUpForm";
 
 export const LoginRoutes = () => {
   const { path } = useRouteMatch();
@@ -9,7 +9,7 @@ export const LoginRoutes = () => {
   return (
     <Switch>
       <Route exact path={`${path}`} component={SignInForm} />
-      <Route exact path={`/signup`} component={SignUnForm} />
+      <Route exact path={`/signup`} component={SignUpForm} />
       <Route path="*" component={() => <h1>Not Found</h1>} />
     </Switch>
   );
