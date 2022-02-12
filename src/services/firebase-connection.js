@@ -15,6 +15,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
+firebase.auth().languageCode = "pt-BR";
 const database = firebase.firestore();
 
 export { database };
