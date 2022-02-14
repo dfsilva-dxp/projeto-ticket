@@ -1,7 +1,10 @@
 import { Redirect, Route, RouteProps } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export const PrivateRoute = ({ ...props }: RouteProps) => {
-  const signed = false;
+  const { isSigned } = useAuth();
 
-  return signed ? <Route {...props} /> : <Redirect to="/" />;
+  console.log(isSigned);
+
+  return isSigned ? <Route {...props} /> : <Redirect to="/" />;
 };
