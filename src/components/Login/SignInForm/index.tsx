@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
+import { routes } from "../../../constants/routes";
+
 import { PageHead } from "../../PageHead";
 import { Input } from "../../Input";
 import { Button } from "../../Button";
@@ -42,13 +44,13 @@ export const SignInForm = () => {
             placeholder="Sua senha"
             icon={<TiLockClosedOutline />}
           />
-          <Link to="/forgot">Esqueceu a senha?</Link>
+          <Link to={`/${routes.FORGOT}`}>Esqueceu a senha?</Link>
           <Button type="submit" size="full" btnStyle="square">
             Entrar
           </Button>
           <div className="paragraph">
             Não tem conta?
-            <Link to="/signup">Cadastre-se</Link>
+            <Link to={`/${routes.SIGN_UP}`}>Cadastre-se</Link>
           </div>
         </form>
       </section>
