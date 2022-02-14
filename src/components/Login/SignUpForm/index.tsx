@@ -6,6 +6,8 @@ import {
   TiUserOutline,
 } from "react-icons/ti";
 
+import { routes } from "../../../constants/routes";
+
 import { PageHead } from "../../PageHead";
 import { Button } from "../../Button";
 import { Input } from "../../Input";
@@ -58,7 +60,7 @@ export const SignUpForm = () => {
             acompanhar os seus <br />
             <span> chamados.</span>
           </h1>
-          <Link to="/">
+          <Link to={routes.LOGIN}>
             <TiArrowLeft />
             Voltar para login
           </Link>
