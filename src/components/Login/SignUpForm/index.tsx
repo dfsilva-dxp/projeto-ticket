@@ -13,16 +13,41 @@ import { Button } from "../../Button";
 import { Input } from "../../Input";
 
 import "./styles.scss";
+import useForm from "../../../hooks/useOnChange";
+import { FormEvent, useState } from "react";
+import { SignUpData } from "../../../contexts/auth";
+import useAuth from "../../../hooks/useAuth";
+
+function initialSignUpValues() {
+  return {
+    name: "",
+    email: "",
+    password: "",
+  };
+}
 
 export const SignUpForm = () => {
+  const [signUpData, setSignUpData] = useState<SignUpData>(
+    initialSignUpValues()
+  );
+  const { onChange } = useForm();
+  const { signUp } = useAuth();
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    await signUp(signUpData);
+    setSignUpData(initialSignUpValues());
+  }
+
   return (
     <>
       <PageHead
         title="Cadastro | ticket"
         description="Cadastre-se já para acompanhar os seus chamados."
       />
+
       <section className="wrapper-signup float-left">
-        <form action="" className="signup-form">
+        <form className="signup-form" onSubmit={handleSubmit}>
           <h2>Crie sua conta</h2>
           <Input
             type="text"
@@ -31,6 +56,7 @@ export const SignUpForm = () => {
             required
             placeholder="Seu nome"
             icon={<TiUserOutline />}
+            onChange={(e) => onChange(e)(signUpData, setSignUpData)}
           />
           <Input
             type="email"
@@ -39,6 +65,7 @@ export const SignUpForm = () => {
             required
             placeholder="Seu e-mail"
             icon={<TiMail />}
+            onChange={(e) => onChange(e)(signUpData, setSignUpData)}
           />
           <Input
             type="password"
@@ -47,6 +74,7 @@ export const SignUpForm = () => {
             required
             placeholder="Sua senha"
             icon={<TiLockClosedOutline />}
+            onChange={(e) => onChange(e)(signUpData, setSignUpData)}
           />
           <Button type="submit" size="full" btnStyle="square">
             Cadastrar
