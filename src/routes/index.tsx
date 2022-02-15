@@ -11,8 +11,8 @@ export const Routes = () => {
         path={routes.DASHBOARD}
         component={() => <h1>Dashboard</h1>}
       />
-
       <Route path={routes.LOGIN} component={Login} />
+
       <Route path="*" component={() => <h1>Not Found</h1>} />
     </Switch>
   );
