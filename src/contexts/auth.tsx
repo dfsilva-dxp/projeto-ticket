@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import useCookies from "../hooks/useCookies";
 
 import firebase from "../services/firebase-connection";
 
@@ -6,70 +7,106 @@ type AuthProviderProps = {
   children: ReactNode;
 };
 
-export type User = {
+export type Customer = {
   uid: string;
-  email: string;
-  name: string;
-  avatar_url?: string | null;
+  email: string | null;
+  name: string | null;
+  photoURL?: string | null;
 };
 
 export type Credentials = {
+  name?: string;
   email: string;
   password: string;
 };
 
-export type SignUpData = {
-  name: string;
-} & Credentials;
-
 type AuthContextData = {
-  user: User | null;
-  isSigned: boolean;
+  customer: Customer | null;
   loading: boolean;
-  signUp: (signUpData: SignUpData) => Promise<void>;
+  signIn: (credentials: Credentials) => Promise<void>;
+  signUp: (signUpData: Credentials) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
 const AuthContext = createContext({} as AuthContextData);
 
 const AuthContextProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [customer, setCustomer] = useState<Customer | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isSigned, setIsSigned] = useState(!!user);
 
-  useEffect(() => {}, []);
+  const { set, remove } = useCookies("ticke.refreshToken");
 
-  async function signUp({ name, email, password }: SignUpData) {
-    const response = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(({ user }) => user);
+  function session(refreshToken = "") {
+    if (!!refreshToken) {
+      set(refreshToken);
+    } else {
+      remove();
+    }
+  }
 
-    if (response) {
-      const { uid, refreshToken } = response;
+  async function signIn({ email, password }: Credentials) {
+    try {
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(({ user }) => user);
 
-      const customer = { uid, email, name };
+      if (response) {
+        const { uid, refreshToken, displayName: name, photoURL } = response;
 
-      await createCustomer(customer);
+        session(refreshToken);
+        setCustomer({
+          uid,
+          name,
+          email,
+          photoURL,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function signUp({ name = "", email, password }: Credentials) {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+      updateCustomer(name);
+    } catch (e) {
+      console.log(e);
     }
   }
 
   async function signOut() {
     await firebase.auth().signOut();
-    setUser(null);
+    setCustomer(null);
+    session();
   }
 
-  async function createCustomer({ uid, name, email, avatar_url = null }: User) {
-    await firebase.firestore().collection("customers").doc(uid).set({
-      uid,
-      name,
-      email,
-      avatar_url,
-    });
+  function updateCustomer(name: string) {
+    const response = firebase.auth().currentUser;
+    if (response) {
+      response.updateProfile({
+        displayName: name,
+      });
+    }
   }
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const { uid, displayName: name, email, photoURL } = user;
+        setCustomer({ uid, name, email, photoURL });
+      } else {
+        setCustomer(null);
+      }
+    });
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isSigned, loading, signUp, signOut }}>
+    <AuthContext.Provider
+      value={{ customer, loading, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
