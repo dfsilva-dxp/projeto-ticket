@@ -1,5 +1,5 @@
-import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useCallback, useState } from "react";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 
 const useCookies = (key: string) => {
   const [cookies, setCookies] = useState(() => {
@@ -9,8 +9,8 @@ const useCookies = (key: string) => {
 
   try {
     const set = useCallback(
-      (refreshToken: string) => {
-        setCookie(undefined, key, refreshToken, {
+      (value: string) => {
+        setCookie(undefined, key, value, {
           maxAge: 60 * 60, // 1 hour
           path: "/",
         });
