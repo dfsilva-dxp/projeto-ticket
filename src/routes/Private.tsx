@@ -1,8 +1,9 @@
 import { Redirect, Route, RouteProps } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import useCookies from "../hooks/useCookies";
 
 export const PrivateRoute = ({ ...props }: RouteProps) => {
-  const { isSigned } = useAuth();
+  const { cookies } = useCookies("ticke.refreshToken");
+  const { "ticke.refreshToken": refreshToken } = cookies;
 
-  return isSigned ? <Route {...props} /> : <Redirect to="/" />;
+  return refreshToken ? <Route {...props} /> : <Redirect to="/" />;
 };
