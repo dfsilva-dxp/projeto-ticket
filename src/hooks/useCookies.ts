@@ -1,23 +1,34 @@
 import { destroyCookie, parseCookies, setCookie } from "nookies";
+import { useCallback, useState } from "react";
 
-const useCookies = () => {
+const useCookies = (key: string) => {
+  const [cookies, setCookies] = useState(() => {
+    const cookie = parseCookies();
+    return cookie;
+  });
+
   try {
-    const set = (key: string, refreshToken: string) => {
-      setCookie(undefined, key, refreshToken, {
-        maxAge: 60 * 60, // 1 hour
-        path: "/",
-      });
-    };
+    const set = useCallback(
+      (refreshToken: string) => {
+        setCookie(undefined, key, refreshToken, {
+          maxAge: 60 * 60, // 1 hour
+          path: "/",
+        });
 
-    const get = (key: string) => {
-      const response = parseCookies();
+        const cookie = parseCookies();
+        setCookies(cookie);
+      },
+      [key]
+    );
 
-      return response;
-    };
+    const get = useCallback(() => {
+      const cookie = parseCookies();
+      return cookie;
+    }, []);
 
-    const remove = (key: string) => destroyCookie(undefined, key);
+    const remove = useCallback(() => destroyCookie(undefined, key), [key]);
 
-    return { set, get, remove };
+    return { set, get, remove, cookies };
   } catch (e) {
     throw new Error("no refreshToken storage");
   }
