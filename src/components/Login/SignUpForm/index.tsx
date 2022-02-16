@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import {
   TiArrowLeft,
   TiLockClosedOutline,
@@ -7,18 +8,17 @@ import {
 } from "react-icons/ti";
 
 import { routes } from "../../../constants/routes";
+import useAuth from "../../../hooks/useAuth";
+import useForm from "../../../hooks/useForm";
+import { Credentials } from "../../../contexts/auth";
 
 import { PageHead } from "../../PageHead";
 import { Button } from "../../Button";
 import { Input } from "../../Input";
 
 import "./styles.scss";
-import useForm from "../../../hooks/useOnChange";
-import { FormEvent, useState } from "react";
-import { SignUpData } from "../../../contexts/auth";
-import useAuth from "../../../hooks/useAuth";
 
-function initialSignUpValues() {
+function initialState() {
   return {
     name: "",
     email: "",
@@ -27,16 +27,17 @@ function initialSignUpValues() {
 }
 
 export const SignUpForm = () => {
-  const [signUpData, setSignUpData] = useState<SignUpData>(
-    initialSignUpValues()
-  );
-  const { onChange } = useForm();
-  const { signUp } = useAuth();
+  const [credentials, setCredentials] = useState<Credentials>(initialState);
 
-  async function handleSubmit(e: FormEvent) {
+  const history = useHistory();
+  const { signUp } = useAuth();
+  const { onChange } = useForm();
+
+  async function handleSignUp(e: FormEvent) {
     e.preventDefault();
-    await signUp(signUpData);
-    setSignUpData(initialSignUpValues());
+    await signUp(credentials);
+    setCredentials(initialState);
+    history.push("/");
   }
 
   return (
@@ -47,7 +48,7 @@ export const SignUpForm = () => {
       />
 
       <section className="wrapper-signup float-left">
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSignUp}>
           <h2>Crie sua conta</h2>
           <Input
             type="text"
@@ -56,7 +57,7 @@ export const SignUpForm = () => {
             required
             placeholder="Seu nome"
             icon={<TiUserOutline />}
-            onChange={(e) => onChange(e)(signUpData, setSignUpData)}
+            onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
           <Input
             type="email"
@@ -65,7 +66,7 @@ export const SignUpForm = () => {
             required
             placeholder="Seu e-mail"
             icon={<TiMail />}
-            onChange={(e) => onChange(e)(signUpData, setSignUpData)}
+            onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
           <Input
             type="password"
@@ -74,7 +75,7 @@ export const SignUpForm = () => {
             required
             placeholder="Sua senha"
             icon={<TiLockClosedOutline />}
-            onChange={(e) => onChange(e)(signUpData, setSignUpData)}
+            onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
           <Button type="submit" size="full" btnStyle="square">
             Cadastrar

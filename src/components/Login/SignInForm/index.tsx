@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
 import { routes } from "../../../constants/routes";
+import useAuth from "../../../hooks/useAuth";
+import useForm from "../../../hooks/useForm";
+import { Credentials } from "../../../contexts/auth";
 
 import { PageHead } from "../../PageHead";
 import { Input } from "../../Input";
@@ -9,7 +13,27 @@ import { Button } from "../../Button";
 
 import "./styles.scss";
 
+function initialState() {
+  return {
+    email: "",
+    password: "",
+  };
+}
+
 export const SignInForm = () => {
+  const [credentials, setCredentials] = useState<Credentials>(initialState);
+
+  const history = useHistory();
+  const { signIn } = useAuth();
+  const { onChange } = useForm();
+
+  async function handleSignIn(e: FormEvent) {
+    e.preventDefault();
+    await signIn(credentials);
+    setCredentials(initialState());
+    history.push("/dashboard");
+  }
+
   return (
     <>
       <PageHead
@@ -26,7 +50,7 @@ export const SignInForm = () => {
           </h1>
         </div>
 
-        <form action="" className="signin-form">
+        <form className="signin-form" onSubmit={handleSignIn}>
           <h2>Log in</h2>
           <Input
             type="email"
@@ -35,6 +59,7 @@ export const SignInForm = () => {
             required
             placeholder="Seu e-mail"
             icon={<TiMail />}
+            onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
           <Input
             type="password"
@@ -43,6 +68,7 @@ export const SignInForm = () => {
             required
             placeholder="Sua senha"
             icon={<TiLockClosedOutline />}
+            onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
           <Link to={`/${routes.FORGOT}`}>Esqueceu a senha?</Link>
           <Button type="submit" size="full" btnStyle="square">
