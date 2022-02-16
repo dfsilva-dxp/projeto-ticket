@@ -1,17 +1,17 @@
 import { ChangeEvent, Dispatch } from "react";
 
-import { SignUpData } from "../contexts/auth";
+import { Credentials } from "../contexts/auth";
 
 const useForm = () => {
   function onChange({ target }: ChangeEvent<HTMLInputElement>) {
     const { name, value } = target;
 
     return function (
-      customer: SignUpData,
-      setCustomer: Dispatch<React.SetStateAction<SignUpData>>
+      data: Credentials,
+      setData: Dispatch<React.SetStateAction<Credentials>>
     ) {
-      setCustomer({
-        ...customer,
+      setData({
+        ...data,
         [name]: value,
       });
     };
