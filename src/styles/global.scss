@@ -1,3 +1,5 @@
+@import "react-toastify/dist/ReactToastify.css";
+
 :root {
   --white: #fff;
   --gray-50: #f7f8fa;
@@ -8,6 +10,7 @@
   --gray-800: #494d4b;
 
   --green-500: #04d361;
+  --red-500: #e5001b;
 
   --purple-300: #9f75ff;
   --purple-400: #9164fa;
@@ -124,4 +127,11 @@ a {
     opacity: 1;
     transform: initial;
   }
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background: var(--purple-400) !important;
+}
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  background: var(--red-500) !important;
 }
