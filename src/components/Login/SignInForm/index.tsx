@@ -1,15 +1,14 @@
 import { FormEvent, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
-import { routes } from "../../../constants/routes";
-import useAuth from "../../../hooks/useAuth";
-import useForm from "../../../hooks/useForm";
-import { Credentials } from "../../../contexts/auth";
+import useAuth from "hooks/useAuth";
+import useForm from "hooks/useForm";
+import { Credentials } from "contexts/auth";
 
-import { PageHead } from "../../PageHead";
-import { Input } from "../../Input";
-import { Button } from "../../Button";
+import { PageHead } from "components/PageHead";
+import { Input } from "components/Input";
+import { Button } from "components/Button";
 
 import "./styles.scss";
 
@@ -23,7 +22,6 @@ function initialState() {
 export const SignInForm = () => {
   const [credentials, setCredentials] = useState<Credentials>(initialState);
 
-  const history = useHistory();
   const { signIn } = useAuth();
   const { onChange } = useForm();
 
@@ -31,7 +29,6 @@ export const SignInForm = () => {
     e.preventDefault();
     await signIn(credentials);
     setCredentials(initialState());
-    history.push("/dashboard");
   }
 
   return (
@@ -70,13 +67,13 @@ export const SignInForm = () => {
             icon={<TiLockClosedOutline />}
             onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
-          <Link to={`/${routes.FORGOT}`}>Esqueceu a senha?</Link>
+          <Link to={`/forgot`}>Esqueceu a senha?</Link>
           <Button type="submit" size="full" btnStyle="square">
             Entrar
           </Button>
           <div className="paragraph">
             Não tem conta?
-            <Link to={`/${routes.SIGN_UP}`}>Cadastre-se</Link>
+            <Link to={`/signup`}>Cadastre-se</Link>
           </div>
         </form>
       </section>

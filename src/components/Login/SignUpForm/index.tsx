@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   TiArrowLeft,
   TiLockClosedOutline,
@@ -7,14 +7,13 @@ import {
   TiUserOutline,
 } from "react-icons/ti";
 
-import { routes } from "../../../constants/routes";
-import useAuth from "../../../hooks/useAuth";
-import useForm from "../../../hooks/useForm";
-import { Credentials } from "../../../contexts/auth";
+import useAuth from "hooks/useAuth";
+import useForm from "hooks/useForm";
+import { Credentials } from "contexts/auth";
 
-import { PageHead } from "../../PageHead";
-import { Button } from "../../Button";
-import { Input } from "../../Input";
+import { PageHead } from "components/PageHead";
+import { Button } from "components/Button";
+import { Input } from "components/Input";
 
 import "./styles.scss";
 
@@ -29,7 +28,6 @@ function initialState() {
 export const SignUpForm = () => {
   const [credentials, setCredentials] = useState<Credentials>(initialState);
 
-  const history = useHistory();
   const { signUp } = useAuth();
   const { onChange } = useForm();
 
@@ -37,7 +35,6 @@ export const SignUpForm = () => {
     e.preventDefault();
     await signUp(credentials);
     setCredentials(initialState);
-    history.push("/");
   }
 
   return (
@@ -89,7 +86,7 @@ export const SignUpForm = () => {
             acompanhar os seus <br />
             <span> chamados.</span>
           </h1>
-          <Link to={routes.LOGIN}>
+          <Link to="/">
             <TiArrowLeft />
             Voltar para login
           </Link>
