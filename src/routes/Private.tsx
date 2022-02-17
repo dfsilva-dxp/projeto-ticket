@@ -1,10 +1,11 @@
-// import { Redirect, Route, RouteProps } from "react-router-dom";
-// import useCookies from "../hooks/useCookies";
+import { Navigate } from "react-router-dom";
+import useCookies from "../hooks/useCookies";
 
-export const PrivateRoute = () => {
-  // const { cookies } = useCookies("ticke.refreshToken");
-  // const { "ticke.refreshToken": refreshToken } = cookies;
+import { PrivateRouteProps } from "./types";
 
-  // return refreshToken ? <Route {...props} /> : <Redirect to="/" />;
-  return <h1>Private</h1>;
+const PrivateRoute = ({ redirectTo, children }: PrivateRouteProps) => {
+  const { cookies: refreshToken } = useCookies("ticke.refreshToken");
+
+  return refreshToken ? children : <Navigate to={redirectTo} />;
 };
+export default PrivateRoute;
