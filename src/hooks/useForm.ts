@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch } from "react";
 
-import { Credentials } from "contexts/auth";
+import { Credentials } from "contexts/auth/types";
 
 const useForm = () => {
   function onChange({ target }: ChangeEvent<HTMLInputElement>) {
