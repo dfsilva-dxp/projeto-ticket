@@ -1,4 +1,4 @@
-import { LoginRoutes } from "../../routes/Login";
+import { Outlet } from "react-router-dom";
 
 import "./styles.scss";
 
@@ -6,7 +6,7 @@ export const Login = () => {
   return (
     <section className="wrapper-login">
       <div className="container">
-        <LoginRoutes />
+        <Outlet />
       </div>
       <footer className="login-footer">
         <p>
