@@ -1,10 +1,11 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
+import { Credentials } from "contexts/auth/types";
+
 import useAuth from "hooks/useAuth";
 import useForm from "hooks/useForm";
-import { Credentials } from "contexts/auth";
 
 import { PageHead } from "components/PageHead";
 import { Input } from "components/Input";
@@ -22,12 +23,18 @@ function initialState() {
 export const SignInForm = () => {
   const [credentials, setCredentials] = useState<Credentials>(initialState);
 
-  const { signIn } = useAuth();
+  const { authenticate } = useAuth();
   const { onChange } = useForm();
+
+  useEffect(() => {
+    return () => {
+      setCredentials(initialState());
+    };
+  }, []);
 
   async function handleSignIn(e: FormEvent) {
     e.preventDefault();
-    await signIn(credentials);
+    await authenticate(credentials);
     setCredentials(initialState());
   }
 

@@ -7,15 +7,17 @@ import {
   TiUserOutline,
 } from "react-icons/ti";
 
+import { Credentials } from "contexts/auth/types";
+
 import useAuth from "hooks/useAuth";
 import useForm from "hooks/useForm";
-import { Credentials } from "contexts/auth";
 
 import { PageHead } from "components/PageHead";
 import { Button } from "components/Button";
 import { Input } from "components/Input";
 
 import "./styles.scss";
+import { useEffect } from "react";
 
 function initialState() {
   return {
@@ -30,6 +32,12 @@ export const SignUpForm = () => {
 
   const { signUp } = useAuth();
   const { onChange } = useForm();
+
+  useEffect(() => {
+    return () => {
+      setCredentials(initialState());
+    };
+  }, []);
 
   async function handleSignUp(e: FormEvent) {
     e.preventDefault();
