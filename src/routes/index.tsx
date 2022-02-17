@@ -1,19 +1,22 @@
-import { Route, Switch } from "react-router-dom";
-import { Login } from "../pages/Login";
-import { PrivateRoute } from "./Private";
+import { Route, Routes, Navigate } from "react-router-dom";
 
-import { routes } from "../constants/routes";
+import { Home } from "pages/Home";
+import { NotFound } from "pages/404";
 
-export const Routes = () => {
+import { SignInForm } from "components/Login/SignInForm";
+import { SignUpForm } from "components/Login/SignUpForm";
+
+import { Login } from "pages/Login";
+
+export const AppRoutes = () => {
   return (
-    <Switch>
-      <PrivateRoute
-        path={routes.DASHBOARD}
-        component={() => <h1>Dashboard</h1>}
-      />
-      <Route path={routes.LOGIN} component={Login} />
-
-      <Route path="*" component={() => <h1>Not Found</h1>} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Login />}>
+        <Route index element={<SignInForm />} />
+        <Route path="signup" element={<SignUpForm />} />
+      </Route>
+      <Route path="home" element={<Home />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
