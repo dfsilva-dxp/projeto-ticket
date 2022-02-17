@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
 import { Credentials } from "contexts/auth/types";
+import { route } from "constants/routes";
 
 import useAuth from "hooks/useAuth";
 import useForm from "hooks/useForm";
@@ -74,13 +75,13 @@ export const SignInForm = () => {
             icon={<TiLockClosedOutline />}
             onChange={(e) => onChange(e)(credentials, setCredentials)}
           />
-          <Link to={`/forgot`}>Esqueceu a senha?</Link>
+          <Link to={`/${route.LOGIN.FORGOT}`}>Esqueceu a senha?</Link>
           <Button type="submit" size="full" btnStyle="square">
             Entrar
           </Button>
           <div className="paragraph">
             Não tem conta?
-            <Link to={`/signup`}>Cadastre-se</Link>
+            <Link to={`/${route.LOGIN.SIGNUP}`}>Cadastre-se</Link>
           </div>
         </form>
       </section>

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import { AuthContextProvider } from "contexts/auth";
+import { route } from "constants/routes";
 
 import { Home } from "pages/Home";
 import { NotFound } from "pages/404";
@@ -15,21 +16,21 @@ export const AppRoutes = () => {
   return (
     <AuthContextProvider>
       <Routes>
-        <Route path="/" element={<Login />}>
+        <Route path={route.LOGIN.SIGNIN} element={<Login />}>
           <Route index element={<SignInForm />} />
-          <Route path="signup" element={<SignUpForm />} />
+          <Route path={route.LOGIN.SIGNUP} element={<SignUpForm />} />
         </Route>
 
         <Route
-          path="home"
+          path={route.HOME}
           element={
-            <PrivateRoute redirectTo="/">
+            <PrivateRoute redirectTo={route.LOGIN.SIGNIN}>
               <Home />
             </PrivateRoute>
           }
         />
 
-        <Route path="*" element={<NotFound />} />
+        <Route path={route.NOT_FOUND} element={<NotFound />} />
       </Routes>
     </AuthContextProvider>
   );

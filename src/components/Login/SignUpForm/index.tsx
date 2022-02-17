@@ -8,6 +8,7 @@ import {
 } from "react-icons/ti";
 
 import { Credentials } from "contexts/auth/types";
+import { route } from "constants/routes";
 
 import useAuth from "hooks/useAuth";
 import useForm from "hooks/useForm";
@@ -94,7 +95,7 @@ export const SignUpForm = () => {
             acompanhar os seus <br />
             <span> chamados.</span>
           </h1>
-          <Link to="/">
+          <Link to={`${route.LOGIN.SIGNIN}`}>
             <TiArrowLeft />
             Voltar para login
           </Link>
