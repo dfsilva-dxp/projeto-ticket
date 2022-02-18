@@ -1,0 +1,17 @@
+.layout-grid {
+  display: grid;
+  grid-template:
+    "Aside  Header  Header" 4.375rem
+    "Aside  Content Content" 1fr
+    "Aside  Content Content" 1fr
+    /17.5rem 1fr 1fr;
+
+  aside {
+    grid-area: Aside;
+  }
+}
+.content {
+  grid-area: Content;
+  padding: 5rem;
+  min-height: calc(100vh - 4.375rem);
+}
