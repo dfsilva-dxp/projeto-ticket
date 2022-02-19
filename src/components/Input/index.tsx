@@ -10,7 +10,7 @@ type InputProps = {
   icon?: ReactElement;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = ({ icon, ...props }: InputProps) => {
+const Input = ({ icon, ...props }: InputProps) => {
   return (
     <div className="input-group">
       <input
@@ -21,3 +21,5 @@ export const Input = ({ icon, ...props }: InputProps) => {
     </div>
   );
 };
+
+export default Input;

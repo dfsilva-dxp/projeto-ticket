@@ -1,9 +1,13 @@
+import { memo } from "react";
+
+import Header from "components/Header";
+
 import { LayoutProps } from "./types";
 
 import "./styles.scss";
-import { Header } from "components/Header";
 
-export const Layout = ({ children }: LayoutProps) => {
+const Layout = memo(({ children }: LayoutProps) => {
+  console.log("Layout");
   return (
     <section className="layout-grid">
       <Header />
@@ -11,4 +15,6 @@ export const Layout = ({ children }: LayoutProps) => {
       <div className="content">{children}</div>
     </section>
   );
-};
+});
+
+export default Layout;

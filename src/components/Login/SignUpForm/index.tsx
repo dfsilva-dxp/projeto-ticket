@@ -14,8 +14,8 @@ import useAuth from "hooks/useAuth";
 import useForm from "hooks/useForm";
 
 import { PageHead } from "components/PageHead";
-import { Button } from "components/Button";
-import { Input } from "components/Input";
+import Button from "components/Button";
+import Input from "components/Input";
 
 import "./styles.scss";
 import { useEffect } from "react";
@@ -28,7 +28,7 @@ function initialState() {
   };
 }
 
-export const SignUpForm = () => {
+const SignUpForm = () => {
   const [credentials, setCredentials] = useState<Credentials>(initialState);
 
   const { signUp } = useAuth();
@@ -104,3 +104,5 @@ export const SignUpForm = () => {
     </>
   );
 };
+
+export default SignUpForm;

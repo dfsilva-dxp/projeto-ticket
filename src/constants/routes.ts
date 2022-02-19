@@ -5,5 +5,6 @@ export const route = {
     FORGOT: "forgot",
   },
   HOME: "home",
+  CUSTOMERS: "customers",
   NOT_FOUND: "*",
 };

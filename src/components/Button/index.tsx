@@ -3,17 +3,19 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 import "./styles.scss";
 
 type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   color?: "default" | "white" | "gray";
   size?: "small" | "medium" | "full";
   btnStyle?: "square" | "round";
+  icon?: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = ({
+const Button = ({
   children,
   color = "default",
   size = "medium",
   btnStyle = "round",
+  icon,
   ...props
 }: ButtonProps) => {
   return (
@@ -21,7 +23,10 @@ export const Button = ({
       className={`button-control ${color} ${size} ${btnStyle}`}
       {...props}
     >
+      {!!icon && <span>{icon}</span>}
       {children}
     </button>
   );
 };
+
+export default Button;

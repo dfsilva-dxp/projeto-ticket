@@ -1,0 +1,29 @@
+.avatar-wrapper {
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--gray-100);
+}
+.photo {
+  border: 2px solid var(--purple-300);
+  color: var(--purple-300);
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  background-color: var(--gray-50);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.avatar-info {
+  flex: 1;
+  h4 {
+    font-size: 0.875rem;
+  }
+}

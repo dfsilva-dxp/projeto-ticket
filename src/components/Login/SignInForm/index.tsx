@@ -9,8 +9,8 @@ import useAuth from "hooks/useAuth";
 import useForm from "hooks/useForm";
 
 import { PageHead } from "components/PageHead";
-import { Input } from "components/Input";
-import { Button } from "components/Button";
+import Input from "components/Input";
+import Button from "components/Button";
 
 import "./styles.scss";
 
@@ -21,7 +21,7 @@ function initialState() {
   };
 }
 
-export const SignInForm = () => {
+const SignInForm = () => {
   const [credentials, setCredentials] = useState<Credentials>(initialState);
 
   const { authenticate } = useAuth();
@@ -88,3 +88,5 @@ export const SignInForm = () => {
     </>
   );
 };
+
+export default SignInForm;

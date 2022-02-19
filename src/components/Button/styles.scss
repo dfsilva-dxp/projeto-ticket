@@ -9,7 +9,17 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  & > span {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
 
   &.square {
     border-radius: 0.25rem;
@@ -20,6 +30,7 @@
 
   &.small {
     width: auto;
+    font-size: 0.75rem;
     max-width: 220px;
     padding: 0.25em 1rem;
   }

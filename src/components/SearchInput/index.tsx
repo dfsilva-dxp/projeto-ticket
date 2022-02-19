@@ -4,7 +4,7 @@ import { SearchInputProps } from "./types";
 
 import "./styles.scss";
 
-export const SearchInput = ({ ...props }: SearchInputProps) => {
+const SearchInput = ({ ...props }: SearchInputProps) => {
   return (
     <div className="search-control">
       <input type="search" className="input-search-control" {...props} />
@@ -14,3 +14,5 @@ export const SearchInput = ({ ...props }: SearchInputProps) => {
     </div>
   );
 };
+
+export default SearchInput;
