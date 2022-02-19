@@ -25,8 +25,6 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
         .signInWithEmailAndPassword(email, password)
         .then(({ user }) => user);
 
-      console.log(response);
-
       if (response) {
         const { uid, refreshToken, displayName: name, photoURL } = response;
         session(refreshToken);
