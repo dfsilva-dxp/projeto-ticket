@@ -5,12 +5,13 @@ import Header from "components/Header";
 import { LayoutProps } from "./types";
 
 import "./styles.scss";
+import Sidebar from "components/Sidebar";
 
 const Layout = memo(({ children }: LayoutProps) => {
   return (
     <section className="layout-grid">
       <Header />
-      <aside>Menu</aside>
+      <Sidebar />
       <div className="content">{children}</div>
     </section>
   );
