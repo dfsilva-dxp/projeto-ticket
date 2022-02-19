@@ -7,7 +7,6 @@ import { LayoutProps } from "./types";
 import "./styles.scss";
 
 const Layout = memo(({ children }: LayoutProps) => {
-  console.log("Layout");
   return (
     <section className="layout-grid">
       <Header />
