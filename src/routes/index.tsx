@@ -4,15 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "contexts/auth";
 import { route } from "constants/routes";
 
-import { Login } from "pages/Login";
+import Login from "pages/Login";
+import Home from "pages/Home";
+import Customers from "pages/Customers";
+import NotFound from "pages/404";
 
 import SignInForm from "components/Login/SignInForm";
 
 import RequiredAuth from "./RequiredAuth";
-
-const Home = React.lazy(() => import("pages/Home"));
-const Customers = React.lazy(() => import("pages/Customers"));
-const NotFound = React.lazy(() => import("pages/404"));
 
 const SignUpForm = React.lazy(() => import("components/Login/SignUpForm"));
 

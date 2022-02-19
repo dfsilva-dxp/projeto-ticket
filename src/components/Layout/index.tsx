@@ -8,6 +8,7 @@ import "./styles.scss";
 import Sidebar from "components/Sidebar";
 
 const Layout = memo(({ children }: LayoutProps) => {
+  console.log("layout");
   return (
     <section className="layout-grid">
       <Header />

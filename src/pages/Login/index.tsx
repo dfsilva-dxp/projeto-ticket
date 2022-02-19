@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import "./styles.scss";
 
-export const Login = () => {
+const Login = () => {
   return (
     <section className="wrapper-login">
       <div className="container">
@@ -17,3 +17,5 @@ export const Login = () => {
     </section>
   );
 };
+
+export default Login;
