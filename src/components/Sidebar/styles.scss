@@ -1,0 +1,13 @@
+.sidebar {
+  grid-area: Aside;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: start;
+  padding: 1.25rem 2.5rem;
+
+  img {
+    width: min(125px, 100%);
+  }
+}
