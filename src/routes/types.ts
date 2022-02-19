@@ -1,4 +1,4 @@
-export type PrivateRouteProps = {
+export type RequiredAuthProps = {
   redirectTo: string;
   children: JSX.Element;
 };
