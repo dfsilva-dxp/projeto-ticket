@@ -4,7 +4,10 @@ export const route = {
     SIGNUP: "signup",
     FORGOT: "forgot",
   },
-  HOME: "home",
-  CUSTOMERS: "customers",
+  APP: {
+    HOME: "home",
+    CUSTOMERS: "customers",
+    CONFIGURATIONS: "configurations",
+  },
   NOT_FOUND: "*",
 };
