@@ -1,9 +1,10 @@
-import HomeBanner from "components/HomeBanner";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <>
-      <HomeBanner />
+      <h1>Home</h1>
+      <Link to="/customers">Customers</Link>
     </>
   );
 };
