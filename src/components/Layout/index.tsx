@@ -2,18 +2,19 @@ import { memo } from "react";
 
 import Header from "components/Header";
 
-import { LayoutProps } from "./types";
-
 import "./styles.scss";
 import Sidebar from "components/Sidebar";
+import { Outlet } from "react-router-dom";
 
-const Layout = memo(({ children }: LayoutProps) => {
+const Layout = memo(() => {
   console.log("layout");
   return (
     <section className="layout-grid">
       <Header />
       <Sidebar />
-      <div className="content">{children}</div>
+      <div className="content">
+        <Outlet />
+      </div>
     </section>
   );
 });
