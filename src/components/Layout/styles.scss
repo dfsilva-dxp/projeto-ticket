@@ -1,13 +1,35 @@
 .layout-grid {
   display: grid;
-  grid-template:
-    "Aside  Header  Header" 4.375rem
-    "Aside  Content Content" 1fr
-    "Aside  Content Content" 1fr
-    /17.5rem 1fr 1fr;
-}
-.content {
-  grid-area: Content;
-  padding: 5rem;
-  min-height: calc(100vh - 4.375rem);
+  grid-template-columns: 1fr;
+  grid-template-rows: 4.375rem 1fr;
+  gap: 1.25rem;
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+
+    a {
+      display: inline-block;
+      line-height: 4.375rem;
+      padding: 0 0.25rem;
+      position: relative;
+
+      transition: all 0.2s ease-in-out;
+
+      &:hover,
+      &.active {
+        color: var(--purple-400);
+        &::after {
+          content: " ";
+          position: absolute;
+          width: 100%;
+          height: 3px;
+          background-color: var(--purple-400);
+          bottom: 0;
+          left: 0;
+          border-radius: 4px 4px 0 0;
+        }
+      }
+    }
+  }
 }
