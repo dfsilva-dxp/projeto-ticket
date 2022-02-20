@@ -1,4 +1,3 @@
-import Layout from "components/Layout";
 import { Suspense } from "react";
 import { Navigate } from "react-router-dom";
 import useCookies from "../hooks/useCookies";
@@ -9,9 +8,7 @@ const RequiredAuth = ({ redirectTo, children }: RequiredAuthProps) => {
   const { cookies: refreshToken } = useCookies("ticke.refreshToken");
 
   return refreshToken ? (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Layout>{children}</Layout>
-    </Suspense>
+    <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
   ) : (
     <Navigate to={redirectTo} />
   );

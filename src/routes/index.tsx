@@ -12,6 +12,7 @@ import NotFound from "pages/404";
 import SignInForm from "components/Login/SignInForm";
 
 import RequiredAuth from "./RequiredAuth";
+import Layout from "components/Layout";
 
 const SignUpForm = React.lazy(() => import("components/Login/SignUpForm"));
 
@@ -31,22 +32,24 @@ export const AppRoutes = () => {
           />
         </Route>
 
-        <Route
-          path={route.HOME}
-          element={
-            <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-              <Home />
-            </RequiredAuth>
-          }
-        />
-        <Route
-          path={route.CUSTOMERS}
-          element={
-            <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-              <Customers />
-            </RequiredAuth>
-          }
-        />
+        <Route path="/" element={<Layout />}>
+          <Route
+            path={route.APP.HOME}
+            element={
+              <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
+                <Home />
+              </RequiredAuth>
+            }
+          />
+          <Route
+            path={route.APP.CUSTOMERS}
+            element={
+              <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
+                <Customers />
+              </RequiredAuth>
+            }
+          />
+        </Route>
 
         <Route
           path={route.NOT_FOUND}
