@@ -1,25 +1,24 @@
-import { TiPlus } from "react-icons/ti";
-
 import Avatar from "components/Avatar";
-import Button from "components/Button";
-import SearchInput from "components/SearchInput";
 
 import "./styles.scss";
+import Logo from "components/Logo";
+import { NavLink } from "react-router-dom";
+import { route } from "constants/routes";
 
 const Header = () => {
   return (
     <div className="header">
-      <SearchInput placeholder="Buscar na plataforma" />
-
-      <Button
-        type="button"
-        size="small"
-        btnStyle="round"
-        color="gray"
-        icon={<TiPlus />}
-      >
-        Novo Chamado
-      </Button>
+      <Logo />
+      <nav>
+        <ul>
+          <li>
+            <NavLink to={`/${route.APP.HOME}`}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={`/${route.APP.CUSTOMERS}`}>Clientes</NavLink>
+          </li>
+        </ul>
+      </nav>
       <Avatar />
     </div>
   );
