@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
+import Banner from "components/Banner";
 
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
-      <Link to="/customers">Customers</Link>
+      <Banner />
     </>
   );
 };
