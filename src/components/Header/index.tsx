@@ -1,9 +1,11 @@
+import { NavLink } from "react-router-dom";
+
+import { route } from "constants/routes";
+
+import Logo from "components/Logo";
 import Avatar from "components/Avatar";
 
 import "./styles.scss";
-import Logo from "components/Logo";
-import { NavLink } from "react-router-dom";
-import { route } from "constants/routes";
 
 const Header = () => {
   return (
