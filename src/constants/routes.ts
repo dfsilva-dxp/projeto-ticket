@@ -5,7 +5,7 @@ export const route = {
     FORGOT: "forgot",
   },
   APP: {
-    HOME: "home",
+    HOME: "tickets",
     CUSTOMERS: "customers",
     CONFIGURATIONS: "configurations",
   },
