@@ -1,0 +1,20 @@
+.wrapper-banner {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1.25rem;
+
+  p {
+    max-width: 14ch;
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-top: 0.5rem;
+
+    strong {
+      text-transform: uppercase;
+      color: var(--purple-400);
+    }
+  }
+}
