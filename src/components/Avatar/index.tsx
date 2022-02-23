@@ -1,16 +1,16 @@
+import { Link } from "react-router-dom";
 import { TiPowerOutline, TiUserOutline } from "react-icons/ti";
+
+import "./styles.scss";
 
 import useAuth from "hooks/useAuth";
 
-import "./styles.scss";
-import { Link } from "react-router-dom";
-
 const Avatar = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   return (
     <div className="avatar-wrapper">
-      <Link to="/">
+      <Link to="/" onClick={signOut}>
         <TiPowerOutline />
       </Link>
       <div className="photo">{!!!user?.photoURL && <TiUserOutline />}</div>
