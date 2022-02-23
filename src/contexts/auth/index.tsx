@@ -6,6 +6,7 @@ import { AuthContextData, AuthProviderProps, Credentials, User } from "./types";
 
 import useCookies from "hooks/useCookies";
 import firebase from "services/firebase-connection";
+import { route } from "constants/routes";
 
 const AuthContext = createContext({} as AuthContextData);
 
@@ -36,7 +37,7 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
         });
       }
 
-      navigate("/home");
+      navigate(`/${route.APP.HOME}`);
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message, {
@@ -99,6 +100,7 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
       setCookie(refreshToken);
     } else {
       removeCookie();
+      navigate(route.LOGIN.SIGNIN);
     }
   }
 
