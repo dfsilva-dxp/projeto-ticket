@@ -37,7 +37,7 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
         });
       }
 
-      navigate(`/${route.APP.HOME}`);
+      navigate(`/${route.APP.TICKETS}`);
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message, {

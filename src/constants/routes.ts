@@ -5,9 +5,9 @@ export const route = {
     FORGOT: "forgot",
   },
   APP: {
-    HOME: "tickets",
+    TICKETS: "tickets",
     CUSTOMERS: "customers",
-    CONFIGURATIONS: "configurations",
+    PROFILE: "PROFILE",
   },
   NOT_FOUND: "*",
 };
