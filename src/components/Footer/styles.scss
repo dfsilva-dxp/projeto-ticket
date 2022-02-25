@@ -1,0 +1,20 @@
+.login-footer {
+  background-color: var(--gray-800);
+  display: grid;
+  place-items: center;
+
+  p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    transition: color 0.2s ease-out;
+
+    &:hover {
+      color: var(--white);
+    }
+
+    span {
+      font-weight: 600;
+      color: var(--yellow-500);
+    }
+  }
+}
