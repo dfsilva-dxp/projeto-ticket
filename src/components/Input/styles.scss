@@ -4,7 +4,7 @@
 
   & .input-control:hover:not(:disabled):not([readonly]) ~ .icon,
   & .input-control:focus:not(:disabled):not([readonly]) ~ .icon {
-    color: var(--purple-400);
+    color: var(--yellow-500);
   }
 }
 
