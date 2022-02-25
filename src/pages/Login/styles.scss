@@ -1,0 +1,8 @@
+.wrapper-login {
+  display: grid;
+  grid-template-rows: 5rem calc(100vh - 10rem) 5rem;
+
+  &::before {
+    content: "";
+  }
+}
