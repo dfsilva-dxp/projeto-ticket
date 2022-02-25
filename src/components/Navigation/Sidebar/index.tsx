@@ -2,7 +2,7 @@ import { RiAddBoxLine, RiFileListLine } from "react-icons/ri";
 import { TiPowerOutline, TiUserOutline } from "react-icons/ti";
 
 import NavSection from "../NavSection";
-import NavLinks from "../NavLinks";
+import NavLinks from "../NaviLink";
 
 import "./styles.scss";
 import { route } from "constants/routes";
