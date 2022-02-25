@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="nav-content">
-        <Link to={route.APP.TICKETS}>
+        <Link to={route.APP.CALLEDS.ALL}>
           <img
             src="./assets/logo.svg"
             alt="Headset"

@@ -5,8 +5,14 @@ export const route = {
     FORGOT: "forgot",
   },
   APP: {
-    TICKETS: "tickets",
-    CUSTOMERS: "customers",
+    CALLEDS: {
+      ALL: "calleds",
+      NEW: "new-called",
+    },
+    CUSTOMERS: {
+      ALL: "customers",
+      NEW: "new-customer",
+    },
     PROFILE: "PROFILE",
   },
   NOT_FOUND: "*",

@@ -11,6 +11,9 @@ import SignInForm from "components/Login/SignInForm";
 import SignUpForm from "components/Login/SignUpForm";
 
 import RequiredAuth from "./RequiredAuth";
+import Layout from "components/Layout";
+import Called from "pages/Called";
+import Customers from "pages/Customers";
 
 export const AppRoutes = () => {
   return (
@@ -21,24 +24,24 @@ export const AppRoutes = () => {
           <Route path={route.LOGIN.SIGNUP} element={<SignUpForm />} />
         </Route>
 
-        {/* <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route
-            path={route.APP.TICKETS}
+            path={route.APP.CALLEDS.ALL}
             element={
               <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-                <Home />
+                <Called />
               </RequiredAuth>
             }
           />
           <Route
-            path={route.APP.CUSTOMERS}
+            path={route.APP.CUSTOMERS.ALL}
             element={
               <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
                 <Customers />
               </RequiredAuth>
             }
           />
-        </Route> */}
+        </Route>
 
         <Route
           path={route.NOT_FOUND}

@@ -13,24 +13,24 @@ export const Sidebar = () => {
       <NavSection title="Chamados">
         <NavLinks
           label="Todos"
-          href={route.APP.TICKETS}
+          href={route.APP.CALLEDS.ALL}
           icon={<RiFileListLine />}
         />
         <NavLinks
           label="Abrir"
-          href={route.APP.TICKETS}
+          href={route.APP.CALLEDS.ALL}
           icon={<RiAddBoxLine />}
         />
       </NavSection>
       <NavSection title="Clientes">
         <NavLinks
           label="Todos"
-          href={route.APP.CUSTOMERS}
+          href={route.APP.CUSTOMERS.ALL}
           icon={<RiFileListLine />}
         />
         <NavLinks
           label="Novo"
-          href="/new-transaction"
+          href={route.APP.CUSTOMERS.NEW}
           icon={<RiAddBoxLine />}
         />
       </NavSection>
