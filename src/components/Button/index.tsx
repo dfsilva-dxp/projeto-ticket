@@ -1,14 +1,6 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonProps } from "./types";
 
 import "./styles.scss";
-
-type ButtonProps = {
-  children?: ReactNode;
-  color?: "default" | "white" | "gray";
-  size?: "small" | "medium" | "full";
-  btnStyle?: "square" | "round";
-  icon?: ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   children,

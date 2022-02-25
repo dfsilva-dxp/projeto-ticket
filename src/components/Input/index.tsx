@@ -1,15 +1,8 @@
-import {
-  forwardRef,
-  ForwardRefRenderFunction,
-  InputHTMLAttributes,
-  ReactElement,
-} from "react";
+import { forwardRef, ForwardRefRenderFunction } from "react";
+
+import { InputProps } from "./types";
 
 import "./styles.scss";
-
-type InputProps = {
-  icon?: ReactElement;
-} & InputHTMLAttributes<HTMLInputElement>;
 
 const InputDefault: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { icon, ...props },
