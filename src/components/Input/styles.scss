@@ -33,7 +33,7 @@
   &.padding-icon {
     padding: 0 3.5rem;
   }
-  &:placeholder {
+  &::placeholder {
     color: var(--gray-700);
   }
 

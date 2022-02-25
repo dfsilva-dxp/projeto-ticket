@@ -6,7 +6,8 @@ const Login = () => {
   return (
     <section className="wrapper-login">
       <div className="container">
-        <Outlet />
+        Login
+        {/* <Outlet /> */}
       </div>
       <footer className="login-footer">
         <p>

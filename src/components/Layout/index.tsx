@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import "./styles.scss";
 
 const Layout = memo(() => {
+  console.log("Layout");
   return (
     <section className="layout-grid">
       <Header />

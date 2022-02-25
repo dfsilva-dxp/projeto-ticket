@@ -7,7 +7,7 @@ export type AuthProviderProps = {
 export type User = {
   uid: string;
   email: string | null;
-  name: string | null;
+  name: string | number | readonly string[] | undefined | null;
   photoURL?: string | null;
 };
 
