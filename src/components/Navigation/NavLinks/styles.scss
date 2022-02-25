@@ -1,0 +1,18 @@
+.navlink {
+  color: var(--gray-100);
+  a {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease-in-out;
+    svg {
+      margin-right: 0.875rem;
+      font-size: 1.125rem;
+    }
+    &.active,
+    &:hover {
+      color: var(--yellow-500);
+    }
+  }
+}
