@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 
+import useAuth from "hooks/useAuth";
+
 import Avatar from "components/Avatar";
 import { route } from "constants/routes";
 
 import "./styles.scss";
 
 const Header = () => {
+  const { user } = useAuth();
   return (
     <div className="header">
       <div className="nav-content">
@@ -16,14 +19,7 @@ const Header = () => {
             title="Headset amarelo que representa o logo do app"
           />
         </Link>
-        <Avatar
-          user={{
-            uid: "10",
-            name: "Daniel Silva",
-            email: "dfsilva.dxp@gmail.com",
-            photoURL: "https://avatars.githubusercontent.com/u/16245261?v=4",
-          }}
-        />
+        <Avatar user={user} />
       </div>
     </div>
   );
