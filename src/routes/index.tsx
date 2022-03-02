@@ -5,15 +5,16 @@ import { AuthContextProvider } from "contexts/auth";
 import { route } from "constants/routes";
 
 import Login from "pages/Login";
+import Called from "pages/Called";
+import Customers from "pages/Customers";
+import Profile from "pages/Profile";
 import NotFound from "pages/NotFound";
 
+import Layout from "components/Layout";
 import SignInForm from "components/Login/SignInForm";
 import SignUpForm from "components/Login/SignUpForm";
 
 import RequiredAuth from "./RequiredAuth";
-import Layout from "components/Layout";
-import Called from "pages/Called";
-import Customers from "pages/Customers";
 
 export const AppRoutes = () => {
   return (
@@ -38,6 +39,15 @@ export const AppRoutes = () => {
             element={
               <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
                 <Customers />
+              </RequiredAuth>
+            }
+          />
+
+          <Route
+            path={route.APP.PROFILE}
+            element={
+              <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
+                <Profile />
               </RequiredAuth>
             }
           />
