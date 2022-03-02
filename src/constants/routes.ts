@@ -13,7 +13,7 @@ export const route = {
       ALL: "customers",
       NEW: "new-customer",
     },
-    PROFILE: "PROFILE",
+    PROFILE: "profile",
   },
   NOT_FOUND: "*",
 };
