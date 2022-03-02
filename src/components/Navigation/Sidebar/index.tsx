@@ -4,10 +4,14 @@ import { TiPowerOutline, TiUserOutline } from "react-icons/ti";
 import NavSection from "../NavSection";
 import NavLinks from "../NaviLink";
 
-import "./styles.scss";
+import useAuth from "hooks/useAuth";
 import { route } from "constants/routes";
 
+import "./styles.scss";
+
 export const Sidebar = () => {
+  const { signOut } = useAuth();
+
   return (
     <div className="sidebar">
       <NavSection title="Chamados">
@@ -40,7 +44,7 @@ export const Sidebar = () => {
           href={route.APP.PROFILE}
           icon={<TiUserOutline />}
         />
-        <span>
+        <span onClick={signOut}>
           <TiPowerOutline /> Sair
         </span>
       </NavSection>
