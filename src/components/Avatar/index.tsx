@@ -17,7 +17,7 @@ const Avatar = ({ user = null }: AvatarProps) => {
       </div>
       {user && (
         <div className="user-info">
-          <h4>{user.name}</h4>
+          <h4>{user.displayName}</h4>
           <small>{user.email}</small>
         </div>
       )}
