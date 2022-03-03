@@ -10,7 +10,7 @@ import { Input } from "components/Input";
 import Button from "components/Button";
 
 const SignInForm = () => {
-  const { authenticate } = useAuth();
+  const { signIn } = useAuth();
 
   const emailElRef = useRef<HTMLInputElement>(null);
   const passwordElRef = useRef<HTMLInputElement>(null);
@@ -21,7 +21,7 @@ const SignInForm = () => {
       const email = emailElRef.current.value;
       const password = passwordElRef.current.value;
 
-      authenticate({ email, password });
+      signIn({ email, password });
     }
   }
 
