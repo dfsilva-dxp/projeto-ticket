@@ -22,7 +22,7 @@ export const Sidebar = () => {
         />
         <NavLinks
           label="Abrir"
-          href={route.APP.CALLEDS.ALL}
+          href={route.APP.CALLEDS.NEW}
           icon={<RiAddBoxLine />}
         />
       </NavSection>
