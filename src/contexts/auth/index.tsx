@@ -9,12 +9,17 @@ import useUpdateCustomer from "hooks/useUpdateCustomer";
 
 import { route } from "constants/routes";
 
-import { AuthContextData, AuthProviderProps, Credentials } from "./types";
+import {
+  AuthContextData,
+  AuthProviderProps,
+  Credentials,
+  Customer,
+} from "./types";
 
 const AuthContext = createContext({} as AuthContextData);
 
 const AuthContextProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<firebase.User | null>(null);
+  const [user, setUser] = useState<Customer | null>(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -89,7 +94,19 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
       setLoading(true);
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          setUser(user);
+          const { uid } = user;
+          firebase
+            .firestore()
+            .collection("customers")
+            .doc(uid)
+            .onSnapshot((doc) =>
+              setUser({
+                displayName: doc.data()!.name,
+                email: doc.data()!.email,
+                photoURL: doc.data()!.photoURL,
+                uid,
+              })
+            );
         } else {
           setUser(null);
           setLoading(false);
