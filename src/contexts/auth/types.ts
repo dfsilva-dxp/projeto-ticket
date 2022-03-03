@@ -6,7 +6,7 @@ export type AuthProviderProps = {
   children: ReactNode;
 };
 
-export type CustomerCollection = {
+export type Customer = {
   uid: string;
   email: string | null;
   displayName: string | number | readonly string[] | undefined | null;
@@ -25,7 +25,7 @@ export type DataUpdateCustomer = {
 };
 
 export type AuthContextData = {
-  user: firebase.User | null;
+  user: Customer | null;
   loading: boolean;
   signIn: (credentials: Credentials) => Promise<void>;
   signUp: (signUpData: Credentials) => Promise<void>;
