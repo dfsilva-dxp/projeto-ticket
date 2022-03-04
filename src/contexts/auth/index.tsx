@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import firebase from "services/firebase-connection";
+import { route } from "constants/routes";
+import updateDataCustomer from "utils/updateCustomer";
 
 import useSession from "hooks/useSession";
-import useUpdateCustomer from "hooks/useUpdateCustomer";
-
-import { route } from "constants/routes";
 
 import {
   AuthContextData,
@@ -25,7 +24,6 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
   const { setSesstion, removeSession } = useSession();
-  const { updateDataCustomer } = useUpdateCustomer();
 
   const signIn = useCallback(
     async ({ email, password }: Credentials) => {
@@ -61,7 +59,18 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
       try {
         setLoading(true);
 
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const response = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+
+        if (response.user) {
+          const { uid, displayName, email, photoURL } = response.user;
+          firebase
+            .firestore()
+            .collection("customers")
+            .doc(uid)
+            .set({ uid, displayName, email, photoURL });
+        }
 
         updateDataCustomer({
           displayName: name,
@@ -78,7 +87,7 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
         setLoading(false);
       }
     },
-    [navigate, updateDataCustomer]
+    [navigate]
   );
 
   const signOut = useCallback(async () => {
@@ -101,7 +110,7 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
             .doc(uid)
             .onSnapshot((doc) =>
               setUser({
-                displayName: doc.data()!.name,
+                displayName: doc.data()!.displayName,
                 email: doc.data()!.email,
                 photoURL: doc.data()!.photoURL,
                 uid,
