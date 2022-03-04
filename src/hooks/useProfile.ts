@@ -35,14 +35,14 @@ const useProfile = () => {
           .child(file!.name)
           .getDownloadURL();
 
-        setUrl(url);
+        return url;
       }
     },
     []
   );
 
   const save = useCallback(
-    (uid: string, newValue: string) => {
+    async (uid: string, newValue: string) => {
       try {
         if (uid && newValue) {
           updateDataCustomer({
@@ -54,16 +54,16 @@ const useProfile = () => {
           });
 
           if (file) {
+            await uploadFileStorage(uid, file);
+            const urlFileStorage = await getUrlFileStorage(uid, file);
+
             firebase
               .firestore()
               .collection("customers")
               .doc(uid)
               .update({
-                photoURL: `${url}`,
+                photoURL: `${urlFileStorage}`,
               });
-
-            uploadFileStorage(uid, file);
-            getUrlFileStorage(uid, file);
           }
 
           toast.success("Perfil atualizado");
@@ -72,7 +72,7 @@ const useProfile = () => {
         if (err instanceof Error) toast.error(err.message);
       }
     },
-    [getUrlFileStorage, uploadFileStorage, file, url]
+    [getUrlFileStorage, uploadFileStorage, file]
   );
 
   return { url, save, changeFileAndUrl };
