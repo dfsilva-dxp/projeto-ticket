@@ -1,5 +1,5 @@
-import firebase from "services/firebase-connection";
+import { Customer } from "contexts/auth/types";
 
 export type AvatarProps = {
-  user?: firebase.User | null;
+  user?: Customer | null;
 };
