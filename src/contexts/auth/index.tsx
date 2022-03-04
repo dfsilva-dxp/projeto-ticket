@@ -64,12 +64,12 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
           .createUserWithEmailAndPassword(email, password);
 
         if (response.user) {
-          const { uid, displayName, email, photoURL } = response.user;
+          const { uid, photoURL } = response.user;
           firebase
             .firestore()
             .collection("customers")
             .doc(uid)
-            .set({ uid, displayName, email, photoURL });
+            .set({ uid, displayName: name, email, photoURL });
         }
 
         updateDataCustomer({
