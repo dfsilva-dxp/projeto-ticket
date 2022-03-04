@@ -1,9 +1,7 @@
+import ProfileContent from "components/Profile";
+
 function Profile() {
-  return (
-    <>
-      <h1>Profile</h1>
-    </>
-  );
+  return <ProfileContent />;
 }
 
 export default Profile;
