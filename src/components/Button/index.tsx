@@ -1,6 +1,6 @@
 import { ButtonProps } from "./types";
 
-import "./styles.scss";
+import { Button as Btn } from "./styles";
 
 const Button = ({
   children,
@@ -11,13 +11,16 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button
-      className={`button-control ${color} ${size} ${btnStyle}`}
+    <Btn
+      size={size}
+      btnStyle={btnStyle}
+      color={color}
+      hasIcon={!!icon}
       {...props}
     >
-      {!!icon && <span>{icon}</span>}
-      {children}
-    </button>
+      {!!icon && icon}
+      {!!children && <span>{children}</span>}
+    </Btn>
   );
 };
 
