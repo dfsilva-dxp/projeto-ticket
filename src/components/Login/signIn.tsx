@@ -1,5 +1,4 @@
 import { FormEvent, useRef } from "react";
-import { Link } from "react-router-dom";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
 import { route } from "constants/routes";
@@ -7,9 +6,9 @@ import useAuth from "hooks/useAuth";
 
 import { Head } from "components/Head";
 import { Input } from "components/Input";
-import Button from "components/Button";
+import { Display, Form } from "components";
 
-const SignInForm = () => {
+const SignIn = () => {
   const { signIn } = useAuth();
 
   const emailElRef = useRef<HTMLInputElement>(null);
@@ -29,20 +28,24 @@ const SignInForm = () => {
     <>
       <Head
         title="Log in | ticket.app"
-        description="Faça login e acesse os seus chamados."
+        description="Faça login para ter acesso a sua lista de chamados."
       />
 
-      <section className="wrapper-form float-left">
-        <div className="display-text">
-          <p>Bem-vindo (a) ao ticket.app, seus sistema de chamados.</p>
-          <h1>
-            Faça login e acesse <br />
-            os seus <span> chamados.</span>
-          </h1>
-        </div>
+      <Display>
+        <Display.Text>
+          Bem-vindo (a) ao ticket.app, seus sistema de chamados.
+        </Display.Text>
 
-        <form className="form" onSubmit={handleSubmit}>
-          <h2>Log in</h2>
+        <Display.Title>
+          Faça login e acesse <br />
+          os seus
+          <Display.Strong> chamados.</Display.Strong>
+        </Display.Title>
+      </Display>
+
+      <Form.Content>
+        <Form.Base onSubmit={handleSubmit}>
+          <Form.Title>Log in</Form.Title>
           <Input
             type="email"
             name="email"
@@ -61,18 +64,18 @@ const SignInForm = () => {
             icon={<TiLockClosedOutline />}
             ref={passwordElRef}
           />
-          <Link to={`/${route.LOGIN.FORGOT}`}>Esqueceu a senha?</Link>
-          <Button type="submit" size="full" btnStyle="square">
+          <Form.Link to={`/${route.LOGIN.FORGOT}`}>Esqueceu a senha?</Form.Link>
+          <Form.Button type="submit" size="full" btnStyle="square">
             Entrar
-          </Button>
-          <div className="paragraph">
+          </Form.Button>
+          <Form.Text>
             Não tem conta?
-            <Link to={`/${route.LOGIN.SIGNUP}`}>Cadastre-se</Link>
-          </div>
-        </form>
-      </section>
+            <Form.Link to={`/${route.LOGIN.SIGNUP}`}>Cadastre-se</Form.Link>
+          </Form.Text>
+        </Form.Base>
+      </Form.Content>
     </>
   );
 };
 
-export default SignInForm;
+export default SignIn;
