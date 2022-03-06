@@ -37,8 +37,9 @@ const SignIn = () => {
         </Display.Text>
 
         <Display.Title>
-          Faça login e acesse <br />
-          os seus
+          Faça login para ter <br />
+          acesso a sua lista de
+          <br />
           <Display.Strong> chamados.</Display.Strong>
         </Display.Title>
       </Display>
