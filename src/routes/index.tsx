@@ -11,8 +11,7 @@ import Profile from "pages/Profile";
 import NotFound from "pages/NotFound";
 
 import Layout from "components/Layout";
-import { SignIn } from "components";
-import SignUpForm from "components/Login/SignUpForm";
+import { SignIn, SignUp } from "components";
 
 import RequiredAuth from "./RequiredAuth";
 
@@ -22,7 +21,7 @@ export const AppRoutes = () => {
       <Routes>
         <Route path={route.LOGIN.SIGNIN} element={<Login />}>
           <Route index element={<SignIn />} />
-          <Route path={route.LOGIN.SIGNUP} element={<SignUpForm />} />
+          <Route path={route.LOGIN.SIGNUP} element={<SignUp />} />
         </Route>
 
         <Route path="/" element={<Layout />}>
