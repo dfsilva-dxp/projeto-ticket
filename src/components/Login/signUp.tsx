@@ -1,5 +1,4 @@
 import { FormEvent, useRef } from "react";
-import { Link } from "react-router-dom";
 import {
   TiArrowLeft,
   TiLockClosedOutline,
@@ -12,9 +11,9 @@ import useAuth from "hooks/useAuth";
 
 import { Head } from "components/Head";
 import { Input } from "components/Input";
-import Button from "components/Button";
+import { Display, Form } from "components";
 
-const SignUpForm = () => {
+const SignUp = () => {
   const { signUp } = useAuth();
 
   const nameElRef = useRef<HTMLInputElement>(null);
@@ -36,12 +35,12 @@ const SignUpForm = () => {
     <>
       <Head
         title="Cadastro | ticket"
-        description="Cadastre-se já para acompanhar os seus chamados."
+        description="Cadastre-se já para acompanhar todos os seus chamados."
       />
 
-      <section className="wrapper-form float-left">
-        <form className="form" onSubmit={handleSubmit}>
-          <h2>Crie sua conta</h2>
+      <Form.Content>
+        <Form.Base onSubmit={handleSubmit}>
+          <Form.Title>Crie sua conta</Form.Title>
           <Input
             type="text"
             name="name"
@@ -69,26 +68,26 @@ const SignUpForm = () => {
             icon={<TiLockClosedOutline />}
             ref={passwordElRef}
           />
-          <Button type="submit" size="full" btnStyle="square">
+          <Form.Button type="submit" size="full" btnStyle="square">
             Cadastrar
-          </Button>
-        </form>
+          </Form.Button>
+        </Form.Base>
+      </Form.Content>
 
-        <div className="display-text">
-          <p>junte-se a nós!</p>
-          <h1>
-            Cadastre-se já para <br />
-            acompanhar os seus <br />
-            <span> chamados.</span>
-          </h1>
-          <Link to={`${route.LOGIN.SIGNIN}`}>
-            <TiArrowLeft />
-            Voltar para login
-          </Link>
-        </div>
-      </section>
+      <Display>
+        <Display.Text>Junte-se a nós!</Display.Text>
+        <Display.Title>
+          Cadastre-se já para <br />
+          acompanhar os seus <br />
+          <Display.Strong> chamados.</Display.Strong>
+        </Display.Title>
+        <Display.Link to={`${route.LOGIN.SIGNIN}`}>
+          <TiArrowLeft />
+          Voltar para login
+        </Display.Link>
+      </Display>
     </>
   );
 };
 
-export default SignUpForm;
+export default SignUp;
