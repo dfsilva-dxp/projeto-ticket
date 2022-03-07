@@ -1,13 +1,14 @@
-import "./styles.scss";
+import { Content, Copyright, Strong } from "./styles";
+import { CopyrightProps, FooterProps, StrongProps } from "./types";
 
-const Footer = () => {
-  return (
-    <footer className="login-footer">
-      <p>
-        &copy; 2022 &bull; <span>ticket.app</span> Todos os direitos reservados
-      </p>
-    </footer>
-  );
+export default function Footer({ children }: FooterProps) {
+  return <Content>{children}</Content>;
+}
+
+Footer.Copyright = function FooterCopyright({ children }: CopyrightProps) {
+  return <Copyright>{children}</Copyright>;
 };
 
-export default Footer;
+Footer.Strong = function FooterStrong({ children }: StrongProps) {
+  return <Strong>{children}</Strong>;
+};
