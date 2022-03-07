@@ -9,9 +9,7 @@ import {
 import { route } from "constants/routes";
 import useAuth from "hooks/useAuth";
 
-import { Head } from "components/Head";
-import { Input } from "components/Input";
-import { Display, Form } from "components";
+import { Display, Form, Head, Input } from "components";
 
 const SignUp = () => {
   const { signUp } = useAuth();
