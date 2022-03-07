@@ -1,17 +1,19 @@
 import { Outlet } from "react-router-dom";
 
-import Footer from "components/Footer";
+import { FormContainer, FooterContainer } from "containers";
 
-import "./styles.scss";
+import { Container, Wrapper } from "./styles";
 
 const Login = () => {
   return (
-    <section className="wrapper-login">
-      <div className="container">
-        <Outlet />
-      </div>
-      <Footer />
-    </section>
+    <Wrapper>
+      <Container>
+        <FormContainer>
+          <Outlet />
+        </FormContainer>
+      </Container>
+      <FooterContainer />
+    </Wrapper>
   );
 };
 
