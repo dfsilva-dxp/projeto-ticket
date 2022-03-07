@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "contexts/auth";
 import { route } from "constants/routes";
 
-import Login from "pages/Login";
+import { LoginPage } from "pages";
 import Called from "pages/Called";
 import Customers from "pages/Customers";
 import Profile from "pages/Profile";
@@ -19,7 +19,7 @@ export const AppRoutes = () => {
   return (
     <AuthContextProvider>
       <Routes>
-        <Route path={route.LOGIN.SIGNIN} element={<Login />}>
+        <Route path={route.LOGIN.SIGNIN} element={<LoginPage />}>
           <Route index element={<SignIn />} />
           <Route path={route.LOGIN.SIGNUP} element={<SignUp />} />
         </Route>
