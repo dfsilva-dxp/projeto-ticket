@@ -16,4 +16,6 @@ const InputDefault: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   );
 };
 
-export const Input = forwardRef(InputDefault);
+const Input = forwardRef(InputDefault);
+
+export default Input;
