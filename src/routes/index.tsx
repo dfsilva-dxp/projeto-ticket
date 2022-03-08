@@ -11,7 +11,8 @@ import Profile from "pages/Profile";
 import NotFound from "pages/NotFound";
 
 import Layout from "components/Layout";
-import { SignIn, SignUp } from "components";
+
+import { SignIn, SignUp } from "containers";
 
 import RequiredAuth from "./RequiredAuth";
 
