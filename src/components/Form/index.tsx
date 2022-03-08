@@ -1,8 +1,8 @@
 import {
   Base,
+  Box,
   Button as Btn,
   Container,
-  Content,
   Link,
   Text,
   Title,
@@ -10,8 +10,8 @@ import {
 
 import {
   BaseProps,
+  BoxProps,
   ButtonProps,
-  ContentProps,
   CustomLinkProps as LinkProps,
   FormsProps,
   TextProps,
@@ -22,8 +22,8 @@ export default function Form({ children, ...props }: FormsProps) {
   return <Container {...props}>{children}</Container>;
 }
 
-Form.Content = function FormContent({ children, ...props }: ContentProps) {
-  return <Content {...props}>{children}</Content>;
+Form.Box = function FormBox({ children, ...props }: BoxProps) {
+  return <Box {...props}>{children}</Box>;
 };
 
 Form.Base = function formBase({ children, ...props }: BaseProps) {
