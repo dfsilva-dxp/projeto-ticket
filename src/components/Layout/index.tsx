@@ -1,22 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { LayoutProps } from "./types";
+import { Container, Content } from "./styles";
 
-import { Sidebar } from "components/Navigation/Sidebar";
+export default function Layout({ children }: LayoutProps) {
+  return <Container>{children}</Container>;
+}
 
-import "./styles.scss";
-import { HeaderContainer } from "containers";
-
-const Layout = () => {
-  return (
-    <>
-      <HeaderContainer />
-      <section className="wrapper-layout">
-        <Sidebar />
-        <div className="content">
-          <Outlet />
-        </div>
-      </section>
-    </>
-  );
+Layout.Content = function LayoutContent({ children }: LayoutProps) {
+  return <Content>{children}</Content>;
 };
-
-export default Layout;
