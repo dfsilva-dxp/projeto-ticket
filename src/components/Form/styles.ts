@@ -9,13 +9,24 @@ export const Container = styled.div`
   place-items: center;
   height: 100%;
 
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: floatLeft 0.3s forwards;
+
+  @keyframes floatLeft {
+    to {
+      opacity: 1;
+      transform: initial;
+    }
+  }
+
   @media (min-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 `;
 
-export const Content = styled.div`
+export const Box = styled.div`
   background-color: var(--gray-800);
   width: min(480px, 100%);
   border-radius: 0.5rem;
