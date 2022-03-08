@@ -1,7 +1,9 @@
-import { Layout } from "components";
-import { Sidebar } from "components/Navigation/Sidebar";
-import { HeaderContainer } from "containers";
 import { Outlet } from "react-router-dom";
+
+import { Layout } from "components";
+
+import { HeaderContainer } from "containers";
+import Sidebar from "./sidebar";
 
 export default function LayoutContent() {
   return (
