@@ -125,85 +125,8 @@ export const GlobalStyles = createGlobalStyle`
       max-width: 1152px;
     }
   }
-
-  .wrapper-form {
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
-    height: 100%;
-
-    @media (min-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-  }
-
-  .display-text {
-    p {
-      margin-bottom: 1.25rem;
-    }
-    h1 {
-      font-size: 3.375rem;
-      line-height: 1;
-      font-weight: 700;
-
-      span {
-        color: var(--yellow-500);
-        text-transform: uppercase;
-      }
-    }
-    a {
-      color: var(--yellow-500);
-      font-size: 0.875rem;
-      display: flex;
-      align-items: center;
-      margin-top: 1rem;
-
-      svg {
-        font-size: 1.5rem;
-        margin-right: 0.5rem;
-      }
-    }
-  }
-
-  .form {
-    display: grid;
-    gap: 1rem;
-    background-color: var(--gray-800);
-    width: min(480px, 100%);
-    border-radius: 0.5rem;
-    padding: 4rem;
-
-    h2 {
-      font-size: 1.5rem;
-    }
-
-    a {
-      color: var(--yellow-500);
-      margin-left: 0.625rem;
-      text-align: right;
-      font-size: 0.875rem;
-      transition: color 0.2s;
-      text-decoration: underline;
-    }
-  }
-
-  .paragraph {
-    text-align: center;
-  }
-
-  .float-left {
-    opacity: 0;
-    transform: translateX(-20px);
-    animation: floatLeft 0.3s forwards;
-  }
-
-  @keyframes floatLeft {
-    to {
-      opacity: 1;
-      transform: initial;
-    }
-  }
+  
+  
 
   .Toastify__toast-theme--colored.Toastify__toast--success {
     background: var(--yellow-500) !important;
