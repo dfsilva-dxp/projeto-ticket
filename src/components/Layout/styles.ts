@@ -1,4 +1,6 @@
-.wrapper-layout {
+import styled from "styled-components";
+
+export const Container = styled.section`
   width: 100%;
   max-width: 1152px;
   max-height: calc(100vh - 6.25rem);
@@ -15,4 +17,5 @@
   @media (min-width: 1512px) {
     max-width: 1480px;
   }
-}
+`;
+export const Content = styled.section``;
