@@ -10,7 +10,7 @@ export type FormsProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export type ContentProps = FormsProps;
+export type BoxProps = FormsProps;
 
 export type BaseProps = FormHTMLAttributes<HTMLFormElement> &
   Pick<FormsProps, "children">;
