@@ -1,5 +1,6 @@
-import { Content, Copyright, Strong } from "./styles";
 import { CopyrightProps, FooterProps, StrongProps } from "./types";
+
+import { Content, Copyright, Strong } from "./styles";
 
 export default function Footer({ children }: FooterProps) {
   return <Content>{children}</Content>;

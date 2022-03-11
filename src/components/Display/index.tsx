@@ -1,5 +1,3 @@
-import { Container, Link, Strong, Text, Title } from "./styles";
-
 import {
   CustomLinkProps as LinkProps,
   DisplayProps,
@@ -7,6 +5,8 @@ import {
   TextProps,
   TitleProps,
 } from "./types";
+
+import { Container, Link, Strong, Text, Title } from "./styles";
 
 export default function Display({ children }: DisplayProps) {
   return <Container>{children}</Container>;

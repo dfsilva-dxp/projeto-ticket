@@ -44,6 +44,7 @@ export const InputControl = styled.input<InputControlProps>`
 `;
 
 export const Group = styled.div`
+  width: 100%;
   position: relative;
   transition: all 0.1s ease-out;
 
