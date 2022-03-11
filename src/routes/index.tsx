@@ -3,10 +3,9 @@ import { Route, Routes } from "react-router-dom";
 
 import { route } from "constants/routes";
 
-import { LoginPage } from "pages";
+import { LoginPage, ProfilePage } from "pages";
 import Called from "pages/Called";
 import Customers from "pages/Customers";
-import Profile from "pages/Profile";
 import NotFound from "pages/NotFound";
 
 import { Layout, SignIn, SignUp } from "containers";
@@ -45,7 +44,7 @@ export const AppRoutes = () => {
             path={route.APP.PROFILE}
             element={
               <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-                <Profile />
+                <ProfilePage />
               </RequiredAuth>
             }
           />
