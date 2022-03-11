@@ -2,30 +2,32 @@ import { createGlobalStyle } from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
 
 export const GlobalStyles = createGlobalStyle`
-  --white: #fff;
-  --gray-50: #eeeef2;
-  --gray-100: #d1d2dc;
-  --gray-200: #b3b5c6;
-  --gray-300: #9699b0;
-  --gray-400: #797d9a;
-  --gray-500: #616480;
-  --gray-600: #4b4d63;
-  --gray-700: #404152;
-  --gray-750: #353646;
-  --gray-800: #1f2029;
-  --gray-900: #181b23;
+  :root {
+    --white: #fff;
+    --gray-50: #eeeef2;
+    --gray-100: #d1d2dc;
+    --gray-200: #b3b5c6;
+    --gray-300: #9699b0;
+    --gray-400: #797d9a;
+    --gray-500: #616480;
+    --gray-600: #4b4d63;
+    --gray-700: #404152;
+    --gray-750: #353646;
+    --gray-800: #1f2029;
+    --gray-900: #181b23;
 
-  --green-500: #3db2bd;
+    --green-500: #3db2bd;
 
-  --orange-500: #ff5c00;
+    --orange-500: #ff5c00;
 
-  --red-400: #e83f5b;
-  --red-500: #e5001b;
+    --red-400: #e83f5b;
+    --red-500: #e5001b;
 
-  --yellow-400: #f2d129;
-  --yellow-500: #ffc727;
+    --yellow-400: #f2d129;
+    --yellow-500: #ffc727;
 
-  --purple-500: #8257e5;
+    --purple-500: #8257e5;
+  }
 
   * {
     margin: 0;
