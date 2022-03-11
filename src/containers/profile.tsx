@@ -4,12 +4,17 @@ import { Avatar, Form, Input, PageTitle, Profile } from "components";
 
 import useFirebase from "hooks/useFirebase";
 
-export default function ProfileContainer() {
+type ProfileContainerProps = {
+  title: string;
+};
+
+export default function ProfileContainer({ title }: ProfileContainerProps) {
   const { user } = useFirebase();
 
   return (
     <>
-      <PageTitle label="Meu Perfil" />
+      <PageTitle label={title} />
+
       <Profile>
         <Profile.Photo>
           <Avatar>
@@ -37,6 +42,7 @@ export default function ProfileContainer() {
                 placeholder="Seu nome"
                 icon={<TiUserOutline />}
               />
+
               <Input
                 type="email"
                 name="email"
@@ -46,6 +52,7 @@ export default function ProfileContainer() {
                 icon={<TiMail />}
               />
             </Form.Inline>
+
             <Form.Button type="submit" btnStyle="square">
               Salvar
             </Form.Button>
