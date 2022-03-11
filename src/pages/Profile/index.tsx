@@ -1,7 +1,5 @@
-import ProfileContent from "components/Profile";
+import { ProfileContainer } from "containers";
 
-function Profile() {
-  return <ProfileContent />;
+export default function ProfilePage() {
+  return <ProfileContainer title="Meu Perfil" />;
 }
-
-export default Profile;
