@@ -3,6 +3,7 @@ import {
   ContentProps,
   EditorProps,
   EmailProps,
+  FileProps,
   NameProps,
   PhotoProps,
   WrapperProps,
@@ -13,6 +14,7 @@ import {
   Content,
   Editor,
   Email,
+  File,
   Name,
   Photo,
   Wrapper,
@@ -31,6 +33,10 @@ Avatar.Wrapper = function AvatarWrapper({
 
 Avatar.Editor = function AvatarEditor({ children }: EditorProps) {
   return <Editor>{children}</Editor>;
+};
+
+Avatar.File = function AvatarFile({ ...props }: FileProps) {
+  return <File {...props} />;
 };
 
 Avatar.Photo = function AvatarPhoto({ children, photoURL = null }: PhotoProps) {

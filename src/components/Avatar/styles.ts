@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 1rem;
   position: relative;
+  user-select: none;
 `;
 
 type WrapperProps = {
@@ -45,7 +46,7 @@ export const Wrapper = styled.div<WrapperProps>`
   `}
 `;
 
-export const Editor = styled.div`
+export const Editor = styled.label`
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 0.75rem;
   color: var(--white);
@@ -58,6 +59,12 @@ export const Editor = styled.div`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   transform: translateY(110px);
+`;
+
+export const File = styled.input`
+  &[type="file"] {
+    display: none;
+  }
 `;
 
 type PhotoProps = {

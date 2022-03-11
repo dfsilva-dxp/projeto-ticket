@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 export type AvatarProps = {
   children: ReactNode;
@@ -9,6 +9,8 @@ export type WrapperProps = {
 } & Pick<AvatarProps, "children">;
 
 export type EditorProps = Pick<AvatarProps, "children">;
+
+export type FileProps = InputHTMLAttributes<HTMLInputElement>;
 
 export type PhotoProps = {
   photoURL?: string | null | undefined;
