@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { AuthContextProvider } from "contexts/auth";
 import { route } from "constants/routes";
 
 import { LoginPage } from "pages";
@@ -13,10 +12,11 @@ import NotFound from "pages/NotFound";
 import { Layout, SignIn, SignUp } from "containers";
 
 import RequiredAuth from "./RequiredAuth";
+import { FirebaseContextProvider } from "contexts/firebase";
 
 export const AppRoutes = () => {
   return (
-    <AuthContextProvider>
+    <FirebaseContextProvider>
       <Routes>
         <Route path={route.LOGIN.SIGNIN} element={<LoginPage />}>
           <Route index element={<SignIn />} />
@@ -60,6 +60,6 @@ export const AppRoutes = () => {
           }
         />
       </Routes>
-    </AuthContextProvider>
+    </FirebaseContextProvider>
   );
 };
