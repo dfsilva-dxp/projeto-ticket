@@ -1,13 +1,13 @@
 import { TiUserOutline } from "react-icons/ti";
 
-import { route } from "constants/routes";
+import useFirebase from "hooks/useFirebase";
 
-import useAuth from "hooks/useAuth";
+import { route } from "constants/routes";
 
 import { Avatar, Header } from "components";
 
 export default function HeaderContent() {
-  const { user } = useAuth();
+  const { user } = useFirebase();
 
   return (
     <Header>

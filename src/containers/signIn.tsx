@@ -1,13 +1,14 @@
 import { FormEvent, useRef } from "react";
 import { TiLockClosedOutline, TiMail } from "react-icons/ti";
 
+import useFirebase from "hooks/useFirebase";
+
 import { route } from "constants/routes";
-import useAuth from "hooks/useAuth";
 
 import { Display, Form, Head, Input } from "components";
 
 const SignIn = () => {
-  const { signIn } = useAuth();
+  const { signIn } = useFirebase();
 
   const emailElRef = useRef<HTMLInputElement>(null);
   const passwordElRef = useRef<HTMLInputElement>(null);

@@ -6,13 +6,14 @@ import {
   TiUserOutline,
 } from "react-icons/ti";
 
+import useFirebase from "hooks/useFirebase";
+
 import { route } from "constants/routes";
-import useAuth from "hooks/useAuth";
 
 import { Display, Form, Head, Input } from "components";
 
 const SignUp = () => {
-  const { signUp } = useAuth();
+  const { signUp } = useFirebase();
 
   const nameElRef = useRef<HTMLInputElement>(null);
   const emailElRef = useRef<HTMLInputElement>(null);
