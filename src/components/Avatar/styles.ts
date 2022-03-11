@@ -7,16 +7,57 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Wrapper = styled.div`
-  border: 3px solid var(--gray-700);
-  color: var(--green-500);
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 1.25rem;
-  background-color: var(--gray-800);
+type WrapperProps = {
+  size: "normal" | "large";
+};
+
+const wrapperModifiers = {
+  normal: () => css`
+    width: 3.25rem;
+    height: 3.25rem;
+    padding: 0.15rem;
+    font-size: 1.25rem;
+  `,
+  large: () => css`
+    width: 7rem;
+    height: 7rem;
+    padding: 0.25rem;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  `,
+};
+
+export const Wrapper = styled.div<WrapperProps>`
+  ${({ size }) => css`
+    border: 3px solid var(--gray-700);
+    color: var(--green-500);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: var(--gray-800);
+
+    ${!!size && wrapperModifiers[size]};
+
+    &:hover ${Editor} {
+      transform: translateY(60px);
+    }
+  `}
+`;
+
+export const Editor = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 0.75rem;
+  color: var(--white);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(110px);
 `;
 
 type PhotoProps = {
@@ -25,8 +66,8 @@ type PhotoProps = {
 
 export const Photo = styled.div<PhotoProps>`
   ${({ BackgroundUrl }) => css`
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     display: grid;
     place-items: center;

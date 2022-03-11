@@ -4,7 +4,11 @@ export type AvatarProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export type WrapperProps = Pick<AvatarProps, "children">;
+export type WrapperProps = {
+  size?: "normal" | "large";
+} & Pick<AvatarProps, "children">;
+
+export type EditorProps = Pick<AvatarProps, "children">;
 
 export type PhotoProps = {
   photoURL?: string | null | undefined;

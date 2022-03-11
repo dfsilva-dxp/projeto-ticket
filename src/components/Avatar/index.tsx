@@ -1,20 +1,36 @@
 import {
   AvatarProps,
   ContentProps,
+  EditorProps,
   EmailProps,
   NameProps,
   PhotoProps,
   WrapperProps,
 } from "./types";
 
-import { Container, Content, Email, Name, Photo, Wrapper } from "./styles";
+import {
+  Container,
+  Content,
+  Editor,
+  Email,
+  Name,
+  Photo,
+  Wrapper,
+} from "./styles";
 
 export default function Avatar({ children }: AvatarProps) {
   return <Container>{children}</Container>;
 }
 
-Avatar.Wrapper = function AvatarWrapper({ children }: WrapperProps) {
-  return <Wrapper>{children}</Wrapper>;
+Avatar.Wrapper = function AvatarWrapper({
+  children,
+  size = "normal",
+}: WrapperProps) {
+  return <Wrapper size={size}>{children}</Wrapper>;
+};
+
+Avatar.Editor = function AvatarEditor({ children }: EditorProps) {
+  return <Editor>{children}</Editor>;
 };
 
 Avatar.Photo = function AvatarPhoto({ children, photoURL = null }: PhotoProps) {
