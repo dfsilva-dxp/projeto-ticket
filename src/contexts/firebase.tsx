@@ -3,32 +3,44 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import firebase from "services/firebase-connection";
+
 import { route } from "constants/routes";
-import updateDataCustomer from "utils/updateCustomer";
 
 import useSession from "hooks/useSession";
 
 import {
-  AuthContextData,
-  AuthProviderProps,
   Credentials,
   Customer,
+  FirebaseContextData,
+  FirebaseContextProps,
+  FirebaseUpdateData,
+  RegistrationData,
 } from "./types";
 
-const AuthContext = createContext({} as AuthContextData);
+const FirebaseContext = createContext({} as FirebaseContextData);
 
-const AuthContextProvider = ({ children }: AuthProviderProps) => {
+const FirebaseContextProvider = ({ children }: FirebaseContextProps) => {
   const [user, setUser] = useState<Customer | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   const { setSesstion, removeSession } = useSession();
 
+  const updateDataCustomer = useCallback((data: FirebaseUpdateData) => {
+    try {
+      const response = firebase.auth().currentUser;
+      if (response) {
+        response.updateProfile(data);
+      }
+    } catch (err) {
+      if (err instanceof Error) throw new Error(err.message);
+    }
+  }, []);
+
   const signIn = useCallback(
     async ({ email, password }: Credentials) => {
       try {
-        setLoading(true);
         const response = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
@@ -55,10 +67,8 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
   );
 
   const signUp = useCallback(
-    async ({ name = "", email, password }: Credentials) => {
+    async ({ name, email, password }: RegistrationData) => {
       try {
-        setLoading(true);
-
         const response = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
@@ -87,7 +97,7 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
         setLoading(false);
       }
     },
-    [navigate]
+    [navigate, updateDataCustomer]
   );
 
   const signOut = useCallback(async () => {
@@ -100,44 +110,51 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     (() => {
-      setLoading(true);
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          const { uid } = user;
-          firebase
-            .firestore()
-            .collection("customers")
-            .doc(uid)
-            .onSnapshot((doc) =>
-              setUser({
-                displayName: doc.data()!.displayName,
-                email: doc.data()!.email,
-                photoURL: doc.data()!.photoURL,
-                uid,
-              })
-            );
-        } else {
-          setUser(null);
-          setLoading(false);
+      try {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            const { uid } = user;
+            firebase
+              .firestore()
+              .collection("customers")
+              .doc(uid)
+              .onSnapshot((doc) =>
+                setUser({
+                  displayName: doc.data()!.displayName,
+                  email: doc.data()!.email,
+                  photoURL: doc.data()!.photoURL,
+                  uid,
+                })
+              );
+          } else {
+            setUser(null);
+            setLoading(false);
+          }
+        });
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message);
         }
-      });
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
   return (
-    <AuthContext.Provider
+    <FirebaseContext.Provider
       value={{
         user,
         loading,
         signIn,
         signUp,
         signOut,
-        setUser,
+        updateDataCustomer,
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </FirebaseContext.Provider>
   );
 };
 
-export { AuthContext, AuthContextProvider };
+export { FirebaseContext, FirebaseContextProvider };

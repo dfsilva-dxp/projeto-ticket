@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 
-import firebase from "services/firebase-connection";
-
-export type AuthProviderProps = {
+export type FirebaseContextProps = {
   children: ReactNode;
 };
 
@@ -14,21 +12,24 @@ export type Customer = {
 };
 
 export type Credentials = {
-  name?: string;
   email: string;
   password: string;
 };
 
-export type DataUpdateCustomer = {
-  displayName?: string | null;
-  photo?: string | null;
-};
+export type RegistrationData = {
+  name: string;
+} & Credentials;
 
-export type AuthContextData = {
+export type FirebaseContextData = {
   user: Customer | null;
   loading: boolean;
   signIn: (credentials: Credentials) => Promise<void>;
-  signUp: (signUpData: Credentials) => Promise<void>;
+  signUp: (signUpData: RegistrationData) => Promise<void>;
   signOut: () => Promise<void>;
-  setUser: (user: firebase.User | null) => void;
+  updateDataCustomer: (data: FirebaseUpdateData) => void;
+};
+
+export type FirebaseUpdateData = {
+  displayName?: string | null;
+  photo?: string | null;
 };
