@@ -39,6 +39,11 @@ export const Base = styled.form`
   gap: 1rem;
 `;
 
+export const Inline = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
 export const Title = styled.h2`
   font-size: 1.5rem;
 `;
@@ -58,20 +63,20 @@ export const Text = styled.p`
 
 const buttonModifiers = {
   small: () => css`
-    font-size: 0.75rem;
-    max-width: 220px;
-    padding: 0.25em 1rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
   `,
 
   medium: () => css`
-    max-width: 320px;
     padding: 0.5em 1rem;
   `,
 
   full: () => css`
     width: 100%;
-    height: 3rem;
-    padding: 0 2.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
   `,
 
   default: () => css`
@@ -117,12 +122,11 @@ type BtnProps = {
 
 export const Button = styled.button<BtnProps>`
   ${({ size, color, btnStyle, hasIcon }) => css`
-    display: inline-block;
+    display: block;
     border: 0;
     outline: 0;
     vertical-align: middle;
     user-select: none;
-    font-size: 0.875rem;
     line-height: 1.5;
     font-weight: 600;
     text-transform: uppercase;

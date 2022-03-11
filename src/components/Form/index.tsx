@@ -1,14 +1,4 @@
 import {
-  Base,
-  Box,
-  Button as Btn,
-  Container,
-  Link,
-  Text,
-  Title,
-} from "./styles";
-
-import {
   BaseProps,
   BoxProps,
   ButtonProps,
@@ -17,6 +7,17 @@ import {
   TextProps,
   TitleProps,
 } from "./types";
+
+import {
+  Base,
+  Box,
+  Button as Btn,
+  Container,
+  Inline,
+  Link,
+  Text,
+  Title,
+} from "./styles";
 
 export default function Form({ children, ...props }: FormsProps) {
   return <Container {...props}>{children}</Container>;
@@ -28,6 +29,10 @@ Form.Box = function FormBox({ children, ...props }: BoxProps) {
 
 Form.Base = function formBase({ children, ...props }: BaseProps) {
   return <Base {...props}>{children}</Base>;
+};
+
+Form.Inline = function formInline({ children }: FormsProps) {
+  return <Inline>{children}</Inline>;
 };
 
 Form.Title = function formTitle({ children, ...props }: TitleProps) {
