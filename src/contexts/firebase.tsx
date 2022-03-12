@@ -47,9 +47,10 @@ const FirebaseContextProvider = ({ children }: FirebaseContextProps) => {
           .then(({ user }) => user);
 
         if (response) {
-          const { refreshToken } = response;
+          const { refreshToken, uid, displayName, email, photoURL } = response;
 
           setSesstion(refreshToken);
+          setUser({ uid, displayName, email, photoURL });
         }
 
         navigate(`/${route.APP.CALLEDS.ALL}`);
@@ -128,7 +129,6 @@ const FirebaseContextProvider = ({ children }: FirebaseContextProps) => {
               );
           } else {
             setUser(null);
-            setLoading(false);
           }
         });
       } catch (err) {
