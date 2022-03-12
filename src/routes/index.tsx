@@ -11,54 +11,51 @@ import NotFound from "pages/NotFound";
 import { Layout, SignIn, SignUp } from "containers";
 
 import RequiredAuth from "./RequiredAuth";
-import { FirebaseContextProvider } from "contexts/firebase";
 
 export const AppRoutes = () => {
   return (
-    <FirebaseContextProvider>
-      <Routes>
-        <Route path={route.LOGIN.SIGNIN} element={<LoginPage />}>
-          <Route index element={<SignIn />} />
-          <Route path={route.LOGIN.SIGNUP} element={<SignUp />} />
-        </Route>
+    <Routes>
+      <Route path={route.LOGIN.SIGNIN} element={<LoginPage />}>
+        <Route index element={<SignIn />} />
+        <Route path={route.LOGIN.SIGNUP} element={<SignUp />} />
+      </Route>
 
-        <Route path="/" element={<Layout />}>
-          <Route
-            path={route.APP.CALLEDS.ALL}
-            element={
-              <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-                <Called />
-              </RequiredAuth>
-            }
-          />
-          <Route
-            path={route.APP.CUSTOMERS.ALL}
-            element={
-              <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-                <Customers />
-              </RequiredAuth>
-            }
-          />
-
-          <Route
-            path={route.APP.PROFILE}
-            element={
-              <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
-                <ProfilePage />
-              </RequiredAuth>
-            }
-          />
-        </Route>
-
+      <Route path="/" element={<Layout />}>
         <Route
-          path={route.NOT_FOUND}
+          path={route.APP.CALLEDS.ALL}
           element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <NotFound />
-            </Suspense>
+            <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
+              <Called />
+            </RequiredAuth>
           }
         />
-      </Routes>
-    </FirebaseContextProvider>
+        <Route
+          path={route.APP.CUSTOMERS.ALL}
+          element={
+            <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
+              <Customers />
+            </RequiredAuth>
+          }
+        />
+
+        <Route
+          path={route.APP.PROFILE}
+          element={
+            <RequiredAuth redirectTo={route.LOGIN.SIGNIN}>
+              <ProfilePage />
+            </RequiredAuth>
+          }
+        />
+      </Route>
+
+      <Route
+        path={route.NOT_FOUND}
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <NotFound />
+          </Suspense>
+        }
+      />
+    </Routes>
   );
 };
