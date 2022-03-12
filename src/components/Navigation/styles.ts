@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link as RouterLink } from "react-router-dom";
+import { NavLink as RouterLink } from "react-router-dom";
 
 export const Nav = styled.nav`
   display: grid;
