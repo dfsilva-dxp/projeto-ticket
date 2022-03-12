@@ -1,18 +1,27 @@
 import { Outlet } from "react-router-dom";
 
-import { Layout } from "components";
+import { Layout, Loading } from "components";
 
-import { HeaderContainer } from "containers";
-import Sidebar from "./sidebar";
+import { HeaderContainer, Sidebar } from "containers";
+
+import useFirebase from "hooks/useFirebase";
 
 export default function LayoutContent() {
+  const { loading } = useFirebase();
+
   return (
     <>
       <HeaderContainer />
       <Layout>
         <Sidebar />
         <Layout.Content>
-          <Outlet />
+          {loading ? (
+            <Loading>
+              <Loading.Spinner size="md" />
+            </Loading>
+          ) : (
+            <Outlet />
+          )}
         </Layout.Content>
       </Layout>
     </>
