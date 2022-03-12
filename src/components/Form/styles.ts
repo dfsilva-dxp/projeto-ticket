@@ -75,7 +75,7 @@ const buttonModifiers = {
   full: () => css`
     width: 100%;
     padding: 0.5rem 1rem;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     border-radius: 0.3rem;
   `,
 
@@ -129,7 +129,6 @@ export const Button = styled.button<BtnProps>`
     user-select: none;
     line-height: 1.5;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
