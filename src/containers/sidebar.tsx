@@ -1,11 +1,15 @@
+import { TiPowerOutline, TiUserOutline } from "react-icons/ti";
 import { RiAddBoxLine, RiFileListLine } from "react-icons/ri";
 
 import { Nav } from "components";
 
 import { route } from "constants/routes";
-import { TiPowerOutline, TiUserOutline } from "react-icons/ti";
+
+import useFirebase from "hooks/useFirebase";
 
 export default function Sidebar() {
+  const { signOut } = useFirebase();
+
   return (
     <Nav>
       <Nav.NavSection>
@@ -47,6 +51,7 @@ export default function Sidebar() {
           label="Sair"
           to={route.LOGIN.SIGNIN}
           icon={<TiPowerOutline />}
+          onClick={signOut}
         />
       </Nav.NavSection>
     </Nav>

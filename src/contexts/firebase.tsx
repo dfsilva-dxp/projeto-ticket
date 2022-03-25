@@ -21,10 +21,9 @@ const FirebaseContext = createContext({} as FirebaseContextData);
 
 const FirebaseContextProvider = ({ children }: FirebaseContextProps) => {
   const [user, setUser] = useState<Customer | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
   const { setSesstion, removeSession } = useSession();
 
   const updateDataCustomer = useCallback((data: FirebaseUpdateData) => {
@@ -106,39 +105,30 @@ const FirebaseContextProvider = ({ children }: FirebaseContextProps) => {
 
     setUser(null);
     removeSession();
-    navigate(route.LOGIN.SIGNIN);
-  }, [removeSession, navigate]);
+  }, [removeSession]);
 
   useEffect(() => {
-    (() => {
-      try {
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            const { uid } = user;
-            firebase
-              .firestore()
-              .collection("customers")
-              .doc(uid)
-              .onSnapshot((doc) =>
-                setUser({
-                  displayName: doc.data()!.displayName,
-                  email: doc.data()!.email,
-                  photoURL: doc.data()!.photoURL,
-                  uid,
-                })
-              );
-          } else {
-            setUser(null);
-          }
-        });
-      } catch (err) {
-        if (err instanceof Error) {
-          toast.error(err.message);
-        }
-      } finally {
-        setLoading(false);
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const { uid } = user;
+        firebase
+          .firestore()
+          .collection("customers")
+          .doc(uid)
+          .onSnapshot((doc) =>
+            setUser({
+              displayName: doc.data()!.displayName,
+              email: doc.data()!.email,
+              photoURL: doc.data()!.photoURL,
+              uid,
+            })
+          );
+      } else {
+        setUser(null);
       }
-    })();
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (

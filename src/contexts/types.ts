@@ -31,5 +31,5 @@ export type FirebaseContextData = {
 
 export type FirebaseUpdateData = {
   displayName?: string | null;
-  photo?: string | null;
+  photoURL?: string | null;
 };
