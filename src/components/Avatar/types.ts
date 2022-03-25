@@ -1,5 +1,27 @@
-import { Customer } from "contexts/auth/types";
+import { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 export type AvatarProps = {
-  user?: Customer | null;
+  children: ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
+
+export type WrapperProps = {
+  size?: "normal" | "large";
+} & Pick<AvatarProps, "children">;
+
+export type EditorProps = Pick<AvatarProps, "children">;
+
+export type FileProps = InputHTMLAttributes<HTMLInputElement>;
+
+export type PhotoProps = {
+  photoURL?: string | null | undefined;
+} & Pick<AvatarProps, "children">;
+
+export type ContentProps = Pick<AvatarProps, "children">;
+
+export type NameProps = {
+  displayName: string | number | readonly string[] | null | undefined;
+};
+
+export type EmailProps = {
+  email: string | null | undefined;
 };

@@ -1,7 +1,11 @@
-import ProfileContent from "components/Profile";
+import { Head } from "components";
+import { ProfileContainer } from "containers";
 
-function Profile() {
-  return <ProfileContent />;
+export default function ProfilePage() {
+  return (
+    <>
+      <Head title="Meu Perfil" />
+      <ProfileContainer title="Meu Perfil" />
+    </>
+  );
 }
-
-export default Profile;

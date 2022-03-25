@@ -2,25 +2,50 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
 import firebase from "services/firebase-connection";
-import updateDataCustomer from "utils/updateCustomer";
+
+import useFirebase from "./useFirebase";
 
 const useProfile = () => {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { updateDataCustomer } = useFirebase();
 
   const changeFileAndUrl = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const photo = e.target.files![0];
+    try {
+      setLoading(true);
+      const photo = e.target.files![0];
 
-    if (!!!photo) return;
+      if (!!!photo) return;
 
-    setUrl(URL.createObjectURL(photo));
-    setFile(photo);
+      setUrl(URL.createObjectURL(photo));
+      setFile(photo);
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const uploadFileStorage = useCallback(
     async (uid: string, file: File | null) => {
-      if (!!file) {
-        await firebase.storage().ref(`images/${uid}/${file?.name}`).put(file!);
+      try {
+        setLoading(true);
+        if (!!file) {
+          await firebase
+            .storage()
+            .ref(`images/${uid}/${file?.name}`)
+            .put(file!);
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
+      } finally {
+        setLoading(false);
       }
     },
     []
@@ -28,14 +53,23 @@ const useProfile = () => {
 
   const getUrlFileStorage = useCallback(
     async (uid: string, file: File | null) => {
-      if (!!file) {
-        const url = await firebase
-          .storage()
-          .ref(`images/${uid}`)
-          .child(file!.name)
-          .getDownloadURL();
+      try {
+        setLoading(true);
+        if (!!file) {
+          const url = await firebase
+            .storage()
+            .ref(`images/${uid}`)
+            .child(file!.name)
+            .getDownloadURL();
 
-        return url;
+          return url;
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
+      } finally {
+        setLoading(false);
       }
     },
     []
@@ -44,6 +78,7 @@ const useProfile = () => {
   const save = useCallback(
     async (uid: string, newValue: string) => {
       try {
+        setLoading(true);
         if (uid && newValue) {
           updateDataCustomer({
             displayName: newValue,
@@ -64,18 +99,24 @@ const useProfile = () => {
               .update({
                 photoURL: `${urlFileStorage}`,
               });
+
+            updateDataCustomer({
+              photoURL: `${urlFileStorage}`,
+            });
           }
 
           toast.success("Perfil atualizado");
         }
       } catch (err) {
         if (err instanceof Error) toast.error(err.message);
+      } finally {
+        setLoading(false);
       }
     },
-    [getUrlFileStorage, uploadFileStorage, file]
+    [getUrlFileStorage, uploadFileStorage, updateDataCustomer, file]
   );
 
-  return { url, save, changeFileAndUrl };
+  return { url, save, changeFileAndUrl, loading };
 };
 
 export default useProfile;

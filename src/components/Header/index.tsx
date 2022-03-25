@@ -1,30 +1,19 @@
-import { Link } from "react-router-dom";
+import { ContentProps, CustomLinkProps, HeaderProps } from "./types";
 
-import Avatar from "components/Avatar";
+import { Container, Content, Image, Link } from "./styles";
 
-import useAuth from "hooks/useAuth";
+export default function Header({ children }: HeaderProps) {
+  return <Container>{children}</Container>;
+}
 
-import { route } from "constants/routes";
-
-import "./styles.scss";
-
-const Header = () => {
-  const { user } = useAuth();
-
-  return (
-    <div className="header">
-      <div className="nav-content">
-        <Link to={route.APP.CALLEDS.ALL}>
-          <img
-            src="./assets/logo.svg"
-            alt="Headset"
-            title="Headset amarelo que representa o logo do app"
-          />
-        </Link>
-        <Avatar user={user} />
-      </div>
-    </div>
-  );
+Header.Content = function HeaderContent({ children }: ContentProps) {
+  return <Content>{children}</Content>;
 };
 
-export default Header;
+Header.Link = function HeaderLink({ children, ...props }: CustomLinkProps) {
+  return <Link {...props}>{children}</Link>;
+};
+
+Header.Logo = function HeaderLogo({ ...props }) {
+  return <Image {...props} />;
+};
